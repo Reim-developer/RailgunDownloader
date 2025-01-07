@@ -2,8 +2,8 @@
  * RAILGUN DOWNLOADER - VERSION 4.0.0
  * Application.java
  */
-package RailgunDownloaderV4;
-import RailgunDownloaderV4.Components.Youtube;
+package railgunDownloaderV4;
+import railgunDownloaderV4.components.Youtube;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
