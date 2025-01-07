@@ -1,10 +1,10 @@
 package RailgunDownloaderV4.Components.YoutubeUI;
 import RailgunDownloaderV4.Application;
+import RailgunDownloaderV4.Components.Ulti.SetIcon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Objects;
 
 public class YoutubeUI {
     private final JFrame ApplicationUI;
@@ -15,6 +15,7 @@ public class YoutubeUI {
     private final DownloadButton DownloadButtonComponent;
     private final Resultlog LogResultComponent;
     private final QualityList ListQuality;
+    private final SetIcon SetupIcon;
 
     public final JTextField InputURLField;
     public  JTextField ShowPathField;
@@ -34,6 +35,7 @@ public class YoutubeUI {
         ShowPathField = new JTextField();
         LogResultComponent = new Resultlog();
         ListQuality = new QualityList();
+        SetupIcon = new SetIcon();
     }
 
     public void ShowYoutubeUI(boolean Visible) {
@@ -44,13 +46,7 @@ public class YoutubeUI {
 
         SwingUtilities.invokeLater(() -> {
             ApplicationUI.setTitle("Download from Youtube");
-            ApplicationUI.setIconImage(
-                    Objects.requireNonNull(
-                            Toolkit.getDefaultToolkit().getImage(
-                                    getClass().getResource("/AppIcon.jpg")
-                            )
-                    )
-            );
+            ApplicationUI.setIconImage(SetupIcon.AppIcon());
             ApplicationUI.setSize(new Dimension(600, 650));
             ApplicationUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             ApplicationUI.setLocationRelativeTo(null);
