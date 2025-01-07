@@ -7,6 +7,11 @@ build/
 !**/src/test/**/build/
 *.lib # For Linux
 *.exe # For Windows
+# For Python environment,
+# you can setup a Python environment
+# via
+# python3 -m venv .venv
+.venv
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
