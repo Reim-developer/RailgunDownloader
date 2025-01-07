@@ -2,7 +2,7 @@
  * RAILGUN DOWNLOADER - VERSION 4.0.0
  * InputURL.java
  */
-package RailgunDownloaderV4.Components.YoutubeUI;
+package railgunDownloaderV4.components.YoutubeUI;
 import javax.swing.*;
 import java.awt.*;
 

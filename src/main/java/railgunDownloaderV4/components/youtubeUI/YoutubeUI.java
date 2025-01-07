@@ -1,6 +1,6 @@
-package RailgunDownloaderV4.Components.YoutubeUI;
-import RailgunDownloaderV4.Application;
-import RailgunDownloaderV4.Components.Ulti.SetIcon;
+package railgunDownloaderV4.components.YoutubeUI;
+import railgunDownloaderV4.Application;
+import railgunDownloaderV4.components.Ulti.SetIcon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -16,6 +16,7 @@ public class YoutubeUI {
     private final Resultlog LogResultComponent;
     private final QualityList ListQuality;
     private final SetIcon SetupIcon;
+    private final CancelDownload CancelDownloadComponent;
 
     public final JTextField InputURLField;
     public  JTextField ShowPathField;
@@ -23,6 +24,7 @@ public class YoutubeUI {
     private JButton DownloadButton;
     public JTextArea LogResult;
     public JList<String> QualityListBox;
+    private final JButton CancelDownloadButton;
 
     public YoutubeUI(Application AppContext) {
         ApplicationUI = new JFrame();
@@ -36,6 +38,8 @@ public class YoutubeUI {
         LogResultComponent = new Resultlog();
         ListQuality = new QualityList();
         SetupIcon = new SetIcon();
+        CancelDownloadComponent = new CancelDownload();
+        CancelDownloadButton = new JButton();
     }
 
     public void ShowYoutubeUI(boolean Visible) {
@@ -62,6 +66,7 @@ public class YoutubeUI {
             DownloadButtonComponent.SetDownloadButton(ApplicationUI, DownloadButton);
             LogResultComponent.SetResultlog(ApplicationUI, LogResult);
             ListQuality.SetQuality(ApplicationUI, QualityListBox);
+            CancelDownloadComponent.SetCancelDownload(ApplicationUI, CancelDownloadButton);
 
             OnClosing();
         });

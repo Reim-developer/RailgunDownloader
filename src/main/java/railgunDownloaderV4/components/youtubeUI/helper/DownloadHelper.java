@@ -1,4 +1,4 @@
-package RailgunDownloaderV4.Components.YoutubeUI.Helper;
+package railgunDownloaderV4.components.YoutubeUI.Helper;
 
 import javax.swing.*;
 import java.io.BufferedReader;

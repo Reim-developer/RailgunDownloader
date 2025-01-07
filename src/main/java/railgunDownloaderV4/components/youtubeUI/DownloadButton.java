@@ -2,8 +2,8 @@
  * RAILGUN DOWNLOADER - VERSION 4.0.0
  * DownloadButton.java
  */
-package RailgunDownloaderV4.Components.YoutubeUI;
-import RailgunDownloaderV4.Components.YoutubeUI.Helper.DownloadHelper;
+package railgunDownloaderV4.components.YoutubeUI;
+import railgunDownloaderV4.components.YoutubeUI.Helper.DownloadHelper;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;

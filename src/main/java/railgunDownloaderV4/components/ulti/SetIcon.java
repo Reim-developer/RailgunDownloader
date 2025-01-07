@@ -1,4 +1,4 @@
-package RailgunDownloaderV4.Components.Ulti;
+package railgunDownloaderV4.components.Ulti;
 import java.awt.*;
 import java.util.Objects;
 
