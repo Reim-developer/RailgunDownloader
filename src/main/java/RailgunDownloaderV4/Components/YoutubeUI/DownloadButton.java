@@ -4,7 +4,6 @@
  */
 package RailgunDownloaderV4.Components.YoutubeUI;
 import RailgunDownloaderV4.Components.YoutubeUI.Helper.DownloadHelper;
-import RailgunDownloaderV4.Components.Ulti.SetIcon;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -13,6 +12,7 @@ import java.io.File;
 public class DownloadButton {
     private final YoutubeUI YoutubeUIContext;
     private final DownloadHelper Helper;
+
     public DownloadButton(YoutubeUI YoutubeUIContext) {
         this.YoutubeUIContext = YoutubeUIContext;
         Helper = new DownloadHelper();
@@ -40,6 +40,7 @@ public class DownloadButton {
         DownloadButton.addActionListener(e -> {
             String InputURLValue = YoutubeUIContext.InputURLField.getText();
             String SavePathValue = YoutubeUIContext.ShowPathField.getText();
+            String ChooseValue = YoutubeUIContext.QualityListBox.getSelectedValue();
 
             File SaveFolder = new File(SavePathValue);
 
@@ -62,7 +63,7 @@ public class DownloadButton {
                 );
                 return;
             }
-            Helper.StartDownload(YoutubeUIContext.LogResult,InputURLValue, "best", SavePathValue);
+            Helper.StartDownload(YoutubeUIContext.LogResult,InputURLValue, ChooseValue, SavePathValue);
         });
     }
 }
