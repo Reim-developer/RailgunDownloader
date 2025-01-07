@@ -14,12 +14,14 @@ public class YoutubeUI {
     private final ChoosePath ChoosePathComponent;
     private final DownloadButton DownloadButtonComponent;
     private final Resultlog LogResultComponent;
+    private final QualityList ListQuality;
 
     public final JTextField InputURLField;
     public  JTextField ShowPathField;
     private JButton ChoosePathButton;
     private JButton DownloadButton;
     public JTextArea LogResult;
+    public JList<String> QualityListBox;
 
     public YoutubeUI(Application AppContext) {
         ApplicationUI = new JFrame();
@@ -31,12 +33,14 @@ public class YoutubeUI {
         InputURLField = new JTextField();
         ShowPathField = new JTextField();
         LogResultComponent = new Resultlog();
+        ListQuality = new QualityList();
     }
 
     public void ShowYoutubeUI(boolean Visible) {
         ChoosePathButton = new JButton();
         DownloadButton = new JButton();
         LogResult = new JTextArea();
+        QualityListBox = new JList<>();
 
         SwingUtilities.invokeLater(() -> {
             ApplicationUI.setTitle("Download from Youtube");
@@ -47,12 +51,12 @@ public class YoutubeUI {
                             )
                     )
             );
-            ApplicationUI.setSize(new Dimension(600, 600));
+            ApplicationUI.setSize(new Dimension(600, 650));
             ApplicationUI.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             ApplicationUI.setLocationRelativeTo(null);
             ApplicationUI.setLayout(null);
             ApplicationUI.setResizable(false);
-            ApplicationUI.setMaximumSize(new Dimension(600, 600));
+            ApplicationUI.setMaximumSize(new Dimension(600, 650));
             ApplicationUI.getContentPane().setBackground(new Color(21, 21, 21));
             ApplicationUI.setVisible(Visible);
 
@@ -61,6 +65,7 @@ public class YoutubeUI {
             ChoosePathComponent.SetChoosePath(ApplicationUI, ChoosePathButton);
             DownloadButtonComponent.SetDownloadButton(ApplicationUI, DownloadButton);
             LogResultComponent.SetResultlog(ApplicationUI, LogResult);
+            ListQuality.SetQuality(ApplicationUI, QualityListBox);
 
             OnClosing();
         });
