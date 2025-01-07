@@ -1,4 +1,4 @@
-package railgunDownloaderV4.components.YoutubeUI;
+package railgunDownloaderV4.components.youtubeUI;
 
 import javax.swing.*;
 import java.awt.*;
