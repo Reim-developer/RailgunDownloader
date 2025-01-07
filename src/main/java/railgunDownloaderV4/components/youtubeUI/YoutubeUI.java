@@ -1,6 +1,6 @@
-package railgunDownloaderV4.components.YoutubeUI;
+package railgunDownloaderV4.components.youtubeUI;
 import railgunDownloaderV4.Application;
-import railgunDownloaderV4.components.Ulti.SetIcon;
+import railgunDownloaderV4.components.ulti.SetIcon;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
