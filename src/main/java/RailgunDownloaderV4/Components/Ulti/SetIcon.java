@@ -1,11 +1,10 @@
 package RailgunDownloaderV4.Components.Ulti;
-
-import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class SetIcon {
     public Image AppIcon() {
-        return new ImageIcon(
+        return Objects.requireNonNull(
                 Toolkit.getDefaultToolkit()
                         .getImage(getClass().getResource("/AppIcon.jpg"))
         );
