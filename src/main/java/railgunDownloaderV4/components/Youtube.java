@@ -2,12 +2,12 @@
  * RAILGUN DOWNLOADER - VERSION 4.0.0
  * Youtube.java
  */
-package RailgunDownloaderV4.Components;
+package railgunDownloaderV4.components;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
-import RailgunDownloaderV4.Application;
-import RailgunDownloaderV4.Components.YoutubeUI.YoutubeUI;
+import railgunDownloaderV4.Application;
+import railgunDownloaderV4.components.youtubeUI.YoutubeUI;
 
 public class Youtube {
     private final Application AppScene;
