@@ -4,7 +4,7 @@
  */
 package RailgunDownloaderV4.Components.YoutubeUI;
 import RailgunDownloaderV4.Components.YoutubeUI.Helper.DownloadHelper;
-
+import RailgunDownloaderV4.Components.Ulti.SetIcon;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -46,7 +46,9 @@ public class DownloadButton {
             if(InputURLValue.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         null,
-                        "Please input your Youtube video URL"
+                        "Please input your Youtube video URL",
+                        "Notification",
+                        JOptionPane.INFORMATION_MESSAGE
                 );
                 return;
             }
@@ -54,7 +56,9 @@ public class DownloadButton {
             if(!SaveFolder.exists() && !SaveFolder.isDirectory()) {
                 JOptionPane.showMessageDialog(
                         null,
-                        "Your save folder is not exists. Please try again"
+                        "Your save folder is not exists. Please try again",
+                        "Notification",
+                        JOptionPane.INFORMATION_MESSAGE
                 );
                 return;
             }
