@@ -11,7 +11,7 @@ import java.awt.Toolkit
 import javax.swing.ImageIcon
 
 class Nhentai (private var appScene: Application) {
-    private var nhentaiComponent: NhentaiUI = NhentaiUI(appScene)
+    private val nhentaiComponent: NhentaiUI by lazy { NhentaiUI(appScene) }
 
 
     fun setNhentaiUIButton(nhentaiButton: JButton) {
@@ -19,7 +19,7 @@ class Nhentai (private var appScene: Application) {
         nhentaiButton.isContentAreaFilled = false
         nhentaiButton.border = null
         nhentaiButton.setLocation(70, 0)
-        nhentaiButton.toolTipText = "Download from Nhentai.net"
+        nhentaiButton.toolTipText = "Download doujinshi from Nhentai.net"
 
         val buttonIcon: Image = Toolkit
             .getDefaultToolkit().getImage(
