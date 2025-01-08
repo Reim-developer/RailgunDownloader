@@ -17,6 +17,7 @@ class PathField {
         pathField.foreground = Color.WHITE
         pathField.setLocation(100, 350)
         pathField.font = Font("Consolas", Font.PLAIN, 12)
+        pathField.isEditable = false
         pathField.toolTipText = "Your chosen path is displayed here"
 
         app.add(pathField)
