@@ -11,12 +11,7 @@ public class QualityList {
                 "bestvideo",
                 "worstvideo",
                 "bestaudio",
-                "worstaudio",
-                "1080p",
-                "720p",
-                "480p",
-                "360p",
-                "144p"
+                "worstaudio"
         };
 
         QualityListBox.setListData(QualityItems);
