@@ -21,10 +21,12 @@ class NhentaiUI (private val appScene: Application){
     private val urlFieldComponent: URLField by lazy { URLField() }
     private val pathFieldComponent: PathField by lazy { PathField() }
     private val choosePathComponent: ChoosePath by lazy { ChoosePath(this) }
+    private val downloadButtonComponent: DownloadButton by lazy { DownloadButton(urlField, pathField) }
 
     private val urlField: JTextField by lazy { JTextField() }
     val pathField: JTextField by lazy { JTextField() }
     private val choosePathButton: JButton by lazy { JButton() }
+    private val downloadButton: JButton by lazy { JButton() }
 
     fun showNhentaiUI(visible: Boolean = false) {
         val nhentaiUI = JFrame()
@@ -43,6 +45,7 @@ class NhentaiUI (private val appScene: Application){
             urlFieldComponent.setURLField(nhentaiUI, urlField)
             pathFieldComponent.setPathField(nhentaiUI, pathField)
             choosePathComponent.setChoosePath(nhentaiUI, choosePathButton)
+            downloadButtonComponent.setDownloadButton(nhentaiUI, downloadButton)
         }
         closingWindow(nhentaiUI = nhentaiUI)
     }
