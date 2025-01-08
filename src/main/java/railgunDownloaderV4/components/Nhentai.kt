@@ -1,0 +1,41 @@
+/*
+ * RAILGUN DOWNLOADER - VERSION 4.0.0
+ * NhentaiUI.kt
+ */
+package railgunDownloaderV4.components
+import javax.swing.JButton
+import railgunDownloaderV4.Application
+import railgunDownloaderV4.components.nhentaiUI.NhentaiUI
+import java.awt.Image
+import java.awt.Toolkit
+import javax.swing.ImageIcon
+
+class Nhentai (private var appScene: Application) {
+    private var nhentaiComponent: NhentaiUI = NhentaiUI(appScene)
+
+
+    fun setNhentaiUIButton(nhentaiButton: JButton) {
+        nhentaiButton.setSize(50, 50)
+        nhentaiButton.isContentAreaFilled = false
+        nhentaiButton.border = null
+        nhentaiButton.setLocation(70, 0)
+        nhentaiButton.toolTipText = "Download from Nhentai.net"
+
+        val buttonIcon: Image = Toolkit
+            .getDefaultToolkit().getImage(
+                this::class.java.getResource("/Nhentai.png"))
+        nhentaiButton.icon = ImageIcon(
+            buttonIcon.getScaledInstance( 50, 50, Image.SCALE_FAST)
+        )
+
+        loadNhentaiUI(nhentaiButton =  nhentaiButton)
+        appScene.App.add(nhentaiButton)
+    }
+
+    private fun loadNhentaiUI(nhentaiButton: JButton) {
+        nhentaiButton.addActionListener { _ ->
+            nhentaiComponent.showNhentaiUI(true)
+            appScene.App.isVisible = false
+        }
+    }
+}
