@@ -4,6 +4,8 @@
  */
 package railgunDownloaderV4;
 import railgunDownloaderV4.components.Youtube;
+import railgunDownloaderV4.components.Nhentai;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -12,16 +14,22 @@ public class Application {
     public JFrame App;
     private final Youtube YoutubeComponent;
     private final JButton YoutubeButton;
+    private final Nhentai nhentaiComponent;
+    private final JButton nhentaiButton;
+
     public Application() {
         App = new JFrame();
         YoutubeButton = new JButton();
         YoutubeComponent = new Youtube(this);
+        nhentaiComponent = new Nhentai(this);
+        nhentaiButton = new JButton();
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Application AppScene = new Application();
             AppScene.SetProperty();
             AppScene.YoutubeComponent.SetYoutubeButton(AppScene.YoutubeButton);
+            AppScene.nhentaiComponent.setNhentaiUIButton(AppScene.nhentaiButton);
         });
     }
 
