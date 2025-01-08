@@ -1,3 +1,7 @@
+/*
+ * RAILGUN DOWNLOADER - VERSION 4.0.0
+ * NhentaiUI.kt
+ */
 package railgunDownloaderV4.components.nhentaiUI
 
 import railgunDownloaderV4.Application
