@@ -18,6 +18,7 @@ class URLField {
         urlField.background = Color(69, 69, 69)
         urlField.foreground = Color.WHITE
         urlField.location = Point(100, 400)
+        urlField.toolTipText = "Input your doujinshi URL or code"
 
         app.add(urlField)
     }
