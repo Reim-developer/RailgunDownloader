@@ -22,7 +22,7 @@ class NhentaiUI (private val appScene: Application){
     private val urlFieldComponent: URLField by lazy { URLField() }
     private val pathFieldComponent: PathField by lazy { PathField() }
     private val choosePathComponent: ChoosePath by lazy { ChoosePath(this) }
-    private val downloadButtonComponent: DownloadButton by lazy { DownloadButton(urlField, pathField) }
+    private val downloadButtonComponent: DownloadButton by lazy { DownloadButton(urlField, pathField, logArea) }
     private val logResultComponent: LogResult by lazy { LogResult() }
 
     private val urlField: JTextField by lazy { JTextField() }
