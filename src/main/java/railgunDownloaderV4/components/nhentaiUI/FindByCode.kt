@@ -7,9 +7,7 @@ package railgunDownloaderV4.components.nhentaiUI
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchNumber
 import railgunDownloaderV4.components.ulti.MessageDialog
-import java.awt.Image
-import java.awt.Toolkit
-import javax.swing.ImageIcon
+import railgunDownloaderV4.components.ulti.SetIconButton
 import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JTextField
@@ -21,9 +19,9 @@ class FindByCode (
     private val matchNumber: MatchNumber by lazy { MatchNumber() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
+    private val setIconButton: SetIconButton by lazy { SetIconButton() }
 
     fun setFindByCode(app: JFrame, findByCodeButton: JButton) {
-
         findByCodeButton.setSize(50, 50)
         findByCodeButton.setLocation(235, 450)
         findByCodeButton.isContentAreaFilled = false
@@ -31,11 +29,11 @@ class FindByCode (
         findByCodeButton.isBorderPainted = false
         findByCodeButton.isFocusPainted = false
 
-        val buttonIcon = Toolkit.getDefaultToolkit()
-            .getImage(this::class.java.getResource("/Search.png"))
-
-        findByCodeButton.icon = ImageIcon(
-            buttonIcon.getScaledInstance(50, 50, Image.SCALE_FAST)
+        setIconButton.setIcon(
+            findByCodeButton,
+            "/Search.png",
+            50,
+            50
         )
         findByCodeButton.toolTipText = "Download doujinshi by code"
 
