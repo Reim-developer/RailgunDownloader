@@ -1,4 +1,5 @@
 *.exe
+*.lib
 *.bin
 *.spec
 .venv
