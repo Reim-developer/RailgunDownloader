@@ -24,12 +24,14 @@ class NhentaiUI (private val appScene: Application){
     private val choosePathComponent: ChoosePath by lazy { ChoosePath(this) }
     private val downloadButtonComponent: DownloadButton by lazy { DownloadButton(urlField, pathField, logArea) }
     private val logResultComponent: LogResult by lazy { LogResult() }
+    private val findByCodeComponent: FindByCode by lazy { FindByCode(urlField, pathField) }
 
     private val urlField: JTextField by lazy { JTextField() }
     val pathField: JTextField by lazy { JTextField() }
     private val logArea: JTextArea by lazy { JTextArea() }
     private val choosePathButton: JButton by lazy { JButton() }
     private val downloadButton: JButton by lazy { JButton() }
+    private val findByCodeButton: JButton by lazy { JButton() }
 
     fun showNhentaiUI(visible: Boolean = false) {
         val nhentaiUI = JFrame()
@@ -45,6 +47,8 @@ class NhentaiUI (private val appScene: Application){
             nhentaiUI.layout = null
             nhentaiUI.isVisible = visible
 
+
+            findByCodeComponent.setFindByCode(nhentaiUI, findByCodeButton)
             urlFieldComponent.setURLField(nhentaiUI, urlField)
             pathFieldComponent.setPathField(nhentaiUI, pathField)
             choosePathComponent.setChoosePath(nhentaiUI, choosePathButton)
