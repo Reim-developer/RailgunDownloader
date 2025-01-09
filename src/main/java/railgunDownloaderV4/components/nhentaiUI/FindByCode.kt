@@ -6,12 +6,12 @@ package railgunDownloaderV4.components.nhentaiUI
 
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchNumber
+import railgunDownloaderV4.components.ulti.MessageDialog
 import java.awt.Image
 import java.awt.Toolkit
 import javax.swing.ImageIcon
 import javax.swing.JButton
 import javax.swing.JFrame
-import javax.swing.JOptionPane
 import javax.swing.JTextField
 
 class FindByCode (
@@ -20,6 +20,7 @@ class FindByCode (
 ){
     private val matchNumber: MatchNumber by lazy { MatchNumber() }
     private val dirExists: DirExists by lazy { DirExists() }
+    private val messageDialog: MessageDialog by lazy { MessageDialog() }
 
     fun setFindByCode(app: JFrame, findByCodeButton: JButton) {
 
@@ -48,21 +49,17 @@ class FindByCode (
             val pathField = pathInput.text
 
             if(!matchNumber.matchNumber(urlField)) {
-                JOptionPane.showMessageDialog(
-                    null,
+                messageDialog.showMessageNotification(
                     "Please input valid code",
-                    "Notification",
-                    JOptionPane.INFORMATION_MESSAGE
+                    "Notification"
                 )
                 return@addActionListener
             }
 
             if(!dirExists.checkDirExists(pathField)) {
-                JOptionPane.showMessageDialog(
-                    null,
+                messageDialog.showMessageNotification(
                     "Please choose your path or make sure this directory path is exists",
-                    "Notification",
-                    JOptionPane.INFORMATION_MESSAGE
+                    "Notification"
                 )
                 return@addActionListener
             }
