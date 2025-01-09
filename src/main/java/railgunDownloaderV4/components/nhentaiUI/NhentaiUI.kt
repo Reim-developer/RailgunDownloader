@@ -24,7 +24,7 @@ class NhentaiUI (private val appScene: Application){
     private val choosePathComponent: ChoosePath by lazy { ChoosePath(this) }
     private val downloadButtonComponent: DownloadButton by lazy { DownloadButton(urlField, pathField, logArea) }
     private val logResultComponent: LogResult by lazy { LogResult() }
-    private val findByCodeComponent: FindByCode by lazy { FindByCode(urlField, pathField) }
+    private val findByCodeComponent: FindByCode by lazy { FindByCode(urlField, pathField, logArea) }
 
     private val urlField: JTextField by lazy { JTextField() }
     val pathField: JTextField by lazy { JTextField() }

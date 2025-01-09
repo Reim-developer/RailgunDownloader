@@ -72,7 +72,7 @@ class DownloadButton(
 
             downloadHelper.startDownload(
                 "bin/NhentaiHelper/NhentaiURL.lib",
-                "--u",
+                "--u   ",
                 logResultArea,
                 savePathDir,
                 inputURL
