@@ -71,6 +71,7 @@ class DownloadButton(
             }
 
             downloadHelper.startDownload(
+                "bin/NhentaiHelper/NhentaiURL.lib",
                 logResultArea,
                 savePathDir,
                 inputURL
