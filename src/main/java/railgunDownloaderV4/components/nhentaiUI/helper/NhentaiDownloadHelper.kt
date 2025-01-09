@@ -1,0 +1,38 @@
+/*
+ * RAILGUN DOWNLOADER - VERSION 4.0.0
+ * NhentaiDownloadHelper.kt
+ */
+
+package railgunDownloaderV4.components.nhentaiUI.helper
+
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import javax.swing.JTextArea
+import javax.swing.SwingUtilities
+import kotlin.io.path.Path
+import kotlin.io.path.absolutePathString
+
+class NhentaiDownloadHelper {
+    fun startDownload(logArea: JTextArea, saveDir: String, doujinshiURL: String ) {
+        val relativePath = "bin/NhentaiHelper/NhentaiURL.lib"
+        val getPath = Path(relativePath)
+        val absolutePath = getPath.absolutePathString()
+
+        val processBuilder = ProcessBuilder(
+            absolutePath,
+            "--d", saveDir,
+            "--u", doujinshiURL
+        )
+
+        val printJobThread = Thread {
+            val process: Process = processBuilder.start()
+            val bufferStdout = BufferedReader(InputStreamReader(process.inputStream))
+
+            var lineContent: String?
+            while (bufferStdout.readLine().also { lineContent = it } != null) {
+                SwingUtilities.invokeLater { logArea.append("$lineContent\n") }
+            }
+        }
+        printJobThread.start()
+    }
+}
