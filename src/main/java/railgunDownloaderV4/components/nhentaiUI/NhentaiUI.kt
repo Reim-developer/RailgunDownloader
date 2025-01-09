@@ -12,6 +12,7 @@ import java.awt.event.WindowAdapter
 import java.awt.event.WindowEvent
 import javax.swing.JButton
 import javax.swing.JFrame
+import javax.swing.JTextArea
 import javax.swing.JTextField
 import javax.swing.SwingUtilities
 import javax.swing.WindowConstants
@@ -22,9 +23,11 @@ class NhentaiUI (private val appScene: Application){
     private val pathFieldComponent: PathField by lazy { PathField() }
     private val choosePathComponent: ChoosePath by lazy { ChoosePath(this) }
     private val downloadButtonComponent: DownloadButton by lazy { DownloadButton(urlField, pathField) }
+    private val logResultComponent: LogResult by lazy { LogResult() }
 
     private val urlField: JTextField by lazy { JTextField() }
     val pathField: JTextField by lazy { JTextField() }
+    private val logArea: JTextArea by lazy { JTextArea() }
     private val choosePathButton: JButton by lazy { JButton() }
     private val downloadButton: JButton by lazy { JButton() }
 
@@ -46,6 +49,7 @@ class NhentaiUI (private val appScene: Application){
             pathFieldComponent.setPathField(nhentaiUI, pathField)
             choosePathComponent.setChoosePath(nhentaiUI, choosePathButton)
             downloadButtonComponent.setDownloadButton(nhentaiUI, downloadButton)
+            logResultComponent.setLogResult(nhentaiUI, logArea)
         }
         closingWindow(nhentaiUI = nhentaiUI)
     }
