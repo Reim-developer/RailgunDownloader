@@ -3,6 +3,7 @@
  * Application.java
  */
 package railgunDownloaderV4;
+import railgunDownloaderV4.components.Facebook;
 import railgunDownloaderV4.components.Youtube;
 import railgunDownloaderV4.components.Nhentai;
 
@@ -13,16 +14,22 @@ import java.util.Objects;
 public class Application {
     public JFrame App;
     private final Youtube YoutubeComponent;
-    private final JButton YoutubeButton;
     private final Nhentai nhentaiComponent;
+    private final Facebook facebookComponent;
+
+    private final JButton YoutubeButton;
     private final JButton nhentaiButton;
+    private final JButton facebookButton;
+
 
     public Application() {
         App = new JFrame();
-        YoutubeButton = new JButton();
         YoutubeComponent = new Youtube(this);
         nhentaiComponent = new Nhentai(this);
+        facebookComponent = new Facebook(this);
+        YoutubeButton = new JButton();
         nhentaiButton = new JButton();
+        facebookButton = new JButton();
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -30,6 +37,7 @@ public class Application {
             AppScene.SetProperty();
             AppScene.YoutubeComponent.SetYoutubeButton(AppScene.YoutubeButton);
             AppScene.nhentaiComponent.setNhentaiUIButton(AppScene.nhentaiButton);
+            AppScene.facebookComponent.setFacebookButton(AppScene.facebookButton);
         });
     }
 
