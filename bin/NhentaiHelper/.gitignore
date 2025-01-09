@@ -1,5 +1,6 @@
 *.exe
 *.bin
+*.spec
 .venv
 build
 dist
