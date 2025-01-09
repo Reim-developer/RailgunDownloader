@@ -4,6 +4,7 @@
  */
 package railgunDownloaderV4.components.nhentaiUI
 
+import railgunDownloaderV4.components.nhentaiUI.helper.NhentaiDownloadHelper
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
 import java.awt.Image
@@ -12,11 +13,17 @@ import javax.swing.ImageIcon
 import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JOptionPane
+import javax.swing.JTextArea
 import javax.swing.JTextField
 
-class DownloadButton(private val urlField: JTextField, private val savePathField: JTextField) {
+class DownloadButton(
+    private val urlField: JTextField,
+    private val savePathField: JTextField,
+    private val logResultArea: JTextArea
+    ) {
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
+    private val downloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
 
     fun setDownloadButton(app: JFrame, downloadButton: JButton) {
         downloadButton.setSize(50, 50)
@@ -62,6 +69,12 @@ class DownloadButton(private val urlField: JTextField, private val savePathField
                 )
                 return@addActionListener
             }
+
+            downloadHelper.startDownload(
+                logResultArea,
+                savePathDir,
+                inputURL
+            )
         }
     }
 }
