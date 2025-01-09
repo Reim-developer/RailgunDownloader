@@ -4,22 +4,26 @@
  */
 package railgunDownloaderV4.components.nhentaiUI
 
+import railgunDownloaderV4.components.nhentaiUI.helper.NhentaiDownloadHelper
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchNumber
 import railgunDownloaderV4.components.ulti.MessageDialog
 import railgunDownloaderV4.components.ulti.SetIconButton
 import javax.swing.JButton
 import javax.swing.JFrame
+import javax.swing.JTextArea
 import javax.swing.JTextField
 
 class FindByCode (
     private val urlInput: JTextField,
-    private val pathInput: JTextField
+    private val pathInput: JTextField,
+    private val logArea: JTextArea
 ){
     private val matchNumber: MatchNumber by lazy { MatchNumber() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
+    private val nhentaiDownloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
 
     fun setFindByCode(app: JFrame, findByCodeButton: JButton) {
         findByCodeButton.setSize(50, 50)
@@ -43,10 +47,10 @@ class FindByCode (
 
     private fun downloadProcess(findByCodeButton: JButton) {
         findByCodeButton.addActionListener {
-            val urlField = urlInput.text
+            val doujinshiCode = urlInput.text
             val pathField = pathInput.text
 
-            if(!matchNumber.matchNumber(urlField)) {
+            if(!matchNumber.matchNumber(doujinshiCode)) {
                 messageDialog.showMessageNotification(
                     "Please input valid code",
                     "Notification"
@@ -61,6 +65,14 @@ class FindByCode (
                 )
                 return@addActionListener
             }
+
+            nhentaiDownloadHelper.startDownload(
+                "bin/NhentaiHelper/NhentaiCode.lib",
+                "--c",
+                logArea,
+                pathField,
+                doujinshiCode
+            )
         }
     }
 }
