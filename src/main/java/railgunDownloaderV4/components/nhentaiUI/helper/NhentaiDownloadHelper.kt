@@ -13,8 +13,7 @@ import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
 
 class NhentaiDownloadHelper {
-    fun startDownload(logArea: JTextArea, saveDir: String, doujinshiURL: String ) {
-        val relativePath = "bin/NhentaiHelper/NhentaiURL.lib"
+    fun startDownload(relativePath: String, logArea: JTextArea, saveDir: String, doujinshiURL: String) {
         val getPath = Path(relativePath)
         val absolutePath = getPath.absolutePathString()
 
