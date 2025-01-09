@@ -13,14 +13,14 @@ import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
 
 class NhentaiDownloadHelper {
-    fun startDownload(relativePath: String, logArea: JTextArea, saveDir: String, doujinshiURL: String) {
+    fun startDownload(relativePath: String, downloadOptions: String, logArea: JTextArea, saveDir: String, doujinshiURL: String) {
         val getPath = Path(relativePath)
         val absolutePath = getPath.absolutePathString()
 
         val processBuilder = ProcessBuilder(
             absolutePath,
             "--d", saveDir,
-            "--u", doujinshiURL
+            downloadOptions, doujinshiURL
         )
 
         val printJobThread = Thread {
