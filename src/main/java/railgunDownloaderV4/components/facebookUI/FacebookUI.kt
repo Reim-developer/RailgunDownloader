@@ -19,11 +19,13 @@ class FacebookUI (private val appScene: Application){
     private val inputPath: InputPath by lazy { InputPath() }
     private val openPath: OpenPath by lazy { OpenPath(this) }
     private val logResult: LogResult by lazy { LogResult() }
+    private val downloadButton: DownloadButton by lazy { DownloadButton(this) }
 
-    private val inputURLField: JTextField by lazy { JTextField() }
+    val inputURLField: JTextField by lazy { JTextField() }
     val inputPathField: JTextField by lazy { JTextField() }
     private val openPathButton: JButton by lazy { JButton() }
     private val logResultArea: JTextArea by lazy { JTextArea() }
+    private val buttonDownload: JButton by lazy { JButton() }
     private val app: JFrame by lazy { JFrame() }
 
     fun showFacebookUI(visible: Boolean = false) {
@@ -43,6 +45,7 @@ class FacebookUI (private val appScene: Application){
                 inputPath.setInputPath(app, inputPathField)
                 openPath.setOpenPath(app, openPathButton)
                 logResult.setLogResult(app, logResultArea)
+                downloadButton.setDownloadButton(app, buttonDownload)
 
                 closingWindow.returnHome(app)
             }
