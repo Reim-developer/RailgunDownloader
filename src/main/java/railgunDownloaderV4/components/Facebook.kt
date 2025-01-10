@@ -7,12 +7,14 @@ package railgunDownloaderV4.components
 
 import railgunDownloaderV4.Application
 import railgunDownloaderV4.components.facebookUI.FacebookUI
+import railgunDownloaderV4.components.facebookUI.events.LoadUI
 import railgunDownloaderV4.components.ulti.SetIconButton
 import javax.swing.JButton
 
 class Facebook (private val appScene: Application){
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
     private val facebookUI: FacebookUI by lazy { FacebookUI(appScene) }
+    private val loadUI: LoadUI by lazy { LoadUI(appScene) }
 
     fun setFacebookButton(facebookButton: JButton) {
         facebookButton.setSize(50, 50)
@@ -26,14 +28,7 @@ class Facebook (private val appScene: Application){
             facebookButton,"/Facebook.png", 50, 50
         )
 
-        loadUI(facebookButton)
+       loadUI.setLoadUI(facebookButton, facebookUI::showFacebookUI)
        appScene.App.add(facebookButton)
-    }
-
-    private fun loadUI(facebookButton: JButton) {
-        facebookButton.addActionListener {
-            facebookUI.showFacebookUI(true)
-            appScene.App.isVisible = false
-        }
     }
 }
