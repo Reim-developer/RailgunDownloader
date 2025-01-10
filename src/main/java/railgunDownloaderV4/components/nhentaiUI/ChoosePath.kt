@@ -4,6 +4,7 @@
  */
 package railgunDownloaderV4.components.nhentaiUI
 
+import railgunDownloaderV4.components.ulti.ClearEvents
 import java.awt.Image
 import java.awt.Toolkit
 import javax.swing.ImageIcon
@@ -13,6 +14,7 @@ import javax.swing.JFrame
 import javax.swing.filechooser.FileSystemView
 
 class ChoosePath (private val nhentaiUI: NhentaiUI) {
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setChoosePath(app: JFrame, choosePathButton: JButton) {
         choosePathButton.setSize(50, 50)
@@ -32,6 +34,9 @@ class ChoosePath (private val nhentaiUI: NhentaiUI) {
     }
 
     private fun openSaveDir(choosePathButton: JButton) {
+
+        clearEvents.clearActionListeners(choosePathButton)
+
         choosePathButton.addActionListener { _ ->
             val chooser = JFileChooser(FileSystemView.getFileSystemView())
             chooser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
