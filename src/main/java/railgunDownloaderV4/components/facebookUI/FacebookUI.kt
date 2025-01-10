@@ -5,17 +5,17 @@
 package railgunDownloaderV4.components.facebookUI
 
 import railgunDownloaderV4.Application
+import railgunDownloaderV4.components.facebookUI.events.ClosingWindow
 import railgunDownloaderV4.components.ulti.SetIcon
 import java.awt.Color
 import java.awt.Dimension
-import java.awt.event.WindowAdapter
-import java.awt.event.WindowEvent
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
 
 class FacebookUI (private val appScene: Application){
 
     private val setIcon: SetIcon by lazy { SetIcon() }
+    private val closingWindow: ClosingWindow by lazy { ClosingWindow(appScene) }
 
     fun showFacebookUI(visible: Boolean = false) {
         SwingUtilities.invokeLater {
@@ -30,16 +30,8 @@ class FacebookUI (private val appScene: Application){
                 iconImage = setIcon.AppIcon()
                 isVisible = visible
 
-                closingWindow(app)
+                closingWindow.returnHome(app)
             }
         }
-    }
-
-    private fun closingWindow(app: JFrame) {
-        app.addWindowListener(object: WindowAdapter() {
-            override fun windowClosing(e: WindowEvent?) {
-                appScene.App.isVisible = true
-            }
-        })
     }
 }
