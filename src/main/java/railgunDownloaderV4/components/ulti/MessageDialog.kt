@@ -7,11 +7,11 @@ package railgunDownloaderV4.components.ulti
 import javax.swing.JOptionPane
 
 class MessageDialog {
-    fun showMessageNotification(message: String, title: String) {
+    fun showMessageNotification(message: String) {
         JOptionPane.showMessageDialog(
             null,
             message,
-            title,
+            "Notification",
             JOptionPane.INFORMATION_MESSAGE
         )
     }
