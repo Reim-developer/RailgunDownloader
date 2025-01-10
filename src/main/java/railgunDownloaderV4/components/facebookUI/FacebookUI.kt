@@ -22,11 +22,12 @@ class FacebookUI (private val appScene: Application){
 
     private val inputURLField: JTextField by lazy { JTextField() }
     private val inputPathField: JTextField by lazy { JTextField() }
+    public val app: JFrame by lazy { JFrame() }
 
     fun showFacebookUI(visible: Boolean = false) {
         SwingUtilities.invokeLater {
-            val app = JFrame("Download video from Facebook")
             app.apply {
+                title = "Download video from Facebook"
                 size = Dimension(600, 600)
                 isResizable = false
                 maximumSize = Dimension(600, 600)
