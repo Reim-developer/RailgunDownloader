@@ -21,11 +21,13 @@ class LogResult {
             font = Font("Consolas", Font.PLAIN, 12)
         }
 
-        val scrollPanel = JScrollPane(logResultArea).apply {
-            size = Dimension(400, 300)
-            location = Point(100, 20)
-            border = null
-        }
+            val scrollPanel = JScrollPane(logResultArea)
+            scrollPanel.size = Dimension(400, 300)
+            scrollPanel.border = null
+            scrollPanel.verticalScrollBarPolicy = JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+            scrollPanel.horizontalScrollBarPolicy = JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+            scrollPanel.location = Point(100, 20)
+
         app.add(scrollPanel)
     }
 }
