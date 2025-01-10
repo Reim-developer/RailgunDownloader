@@ -9,6 +9,7 @@ import railgunDownloaderV4.components.facebookUI.events.ClosingWindow
 import railgunDownloaderV4.components.ulti.SetIcon
 import java.awt.Color
 import java.awt.Dimension
+import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JTextField
 import javax.swing.SwingUtilities
@@ -19,10 +20,12 @@ class FacebookUI (private val appScene: Application){
     private val closingWindow: ClosingWindow by lazy { ClosingWindow(appScene) }
     private val inputURL: InputURL by lazy { InputURL() }
     private val inputPath: InputPath by lazy { InputPath() }
+    private val openPath: OpenPath by lazy { OpenPath(this) }
 
     private val inputURLField: JTextField by lazy { JTextField() }
-    private val inputPathField: JTextField by lazy { JTextField() }
-    public val app: JFrame by lazy { JFrame() }
+    val inputPathField: JTextField by lazy { JTextField() }
+    private val openPathButton: JButton by lazy { JButton() }
+    private val app: JFrame by lazy { JFrame() }
 
     fun showFacebookUI(visible: Boolean = false) {
         SwingUtilities.invokeLater {
@@ -39,6 +42,7 @@ class FacebookUI (private val appScene: Application){
 
                 inputURL.setURL(app, inputURLField)
                 inputPath.setInputPath(app, inputPathField)
+                openPath.setOpenPath(app, openPathButton)
 
                 closingWindow.returnHome(app)
             }
