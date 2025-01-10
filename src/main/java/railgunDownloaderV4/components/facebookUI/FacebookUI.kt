@@ -10,12 +10,18 @@ import railgunDownloaderV4.components.ulti.SetIcon
 import java.awt.Color
 import java.awt.Dimension
 import javax.swing.JFrame
+import javax.swing.JTextField
 import javax.swing.SwingUtilities
 
 class FacebookUI (private val appScene: Application){
 
     private val setIcon: SetIcon by lazy { SetIcon() }
     private val closingWindow: ClosingWindow by lazy { ClosingWindow(appScene) }
+    private val inputURL: InputURL by lazy { InputURL() }
+    private val inputPath: InputPath by lazy { InputPath() }
+
+    private val inputURLField: JTextField by lazy { JTextField() }
+    private val inputPathField: JTextField by lazy { JTextField() }
 
     fun showFacebookUI(visible: Boolean = false) {
         SwingUtilities.invokeLater {
@@ -29,6 +35,9 @@ class FacebookUI (private val appScene: Application){
                 layout = null
                 iconImage = setIcon.AppIcon()
                 isVisible = visible
+
+                inputURL.setURL(app, inputURLField)
+                inputPath.setInputPath(app, inputPathField)
 
                 closingWindow.returnHome(app)
             }
