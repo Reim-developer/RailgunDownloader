@@ -5,10 +5,7 @@
 package railgunDownloaderV4.components.nhentaiUI
 
 import railgunDownloaderV4.components.nhentaiUI.helper.NhentaiDownloadHelper
-import railgunDownloaderV4.components.ulti.DirExists
-import railgunDownloaderV4.components.ulti.MatchNumber
-import railgunDownloaderV4.components.ulti.MessageDialog
-import railgunDownloaderV4.components.ulti.SetIconButton
+import railgunDownloaderV4.components.ulti.*
 import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JTextArea
@@ -24,6 +21,7 @@ class FindByCode (
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
     private val nhentaiDownloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setFindByCode(app: JFrame, findByCodeButton: JButton) {
         findByCodeButton.setSize(50, 50)
@@ -46,6 +44,9 @@ class FindByCode (
     }
 
     private fun downloadProcess(findByCodeButton: JButton) {
+
+        clearEvents.clearActionListeners(findByCodeButton)
+
         findByCodeButton.addActionListener {
             val doujinshiCode = urlInput.text
             val pathField = pathInput.text
