@@ -54,16 +54,14 @@ public class DownloadButton {
 
             if(!matchURL.matchURL(InputURLValue)) {
                 messageDialog.showMessageNotification(
-                        "Please input valid Youtube video URL",
-                        "notification"
+                        "Please input valid Youtube video URL"
                 );
                 return;
             }
 
             if(!dirExists.checkDirExists(SavePathValue)) {
                 messageDialog.showMessageNotification(
-                        "Your save folder is not exists. Please try again",
-                        "Notification"
+                        "Your save folder is not exists. Please try again"
                 );
                 return;
             }
