@@ -52,16 +52,14 @@ class FindByCode (
 
             if(!matchNumber.matchNumber(doujinshiCode)) {
                 messageDialog.showMessageNotification(
-                    "Please input valid code",
-                    "Notification"
+                    "Please input valid code"
                 )
                 return@addActionListener
             }
 
             if(!dirExists.checkDirExists(pathField)) {
                 messageDialog.showMessageNotification(
-                    "Please choose your path or make sure this directory path is exists",
-                    "Notification"
+                    "Please choose your path or make sure this directory path is exists"
                 )
                 return@addActionListener
             }
