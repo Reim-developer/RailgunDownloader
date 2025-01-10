@@ -8,12 +8,12 @@ import railgunDownloaderV4.components.nhentaiUI.helper.NhentaiDownloadHelper
 import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
+import railgunDownloaderV4.components.ulti.MessageDialog
 import java.awt.Image
 import java.awt.Toolkit
 import javax.swing.ImageIcon
 import javax.swing.JButton
 import javax.swing.JFrame
-import javax.swing.JOptionPane
 import javax.swing.JTextArea
 import javax.swing.JTextField
 
@@ -26,6 +26,7 @@ class DownloadButton(
     private val dirExists: DirExists by lazy { DirExists() }
     private val downloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
+    private val messageDialog: MessageDialog by lazy { MessageDialog() }
 
     fun setDownloadButton(app: JFrame, downloadButton: JButton) {
         downloadButton.setSize(50, 50)
@@ -55,23 +56,13 @@ class DownloadButton(
             val inputURL = urlField.text
             val savePathDir = savePathField.text
 
-            if(!matchURL.matchURL(inputURL)) {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Please input valid URL",
-                    "Notification",
-                    JOptionPane.INFORMATION_MESSAGE
-                )
+            matchURL.takeIf { !it.matchURL(inputURL) }?.let {
+                messageDialog.showMessageNotification("Please input valid URL")
                 return@addActionListener
             }
 
-            if(!dirExists.checkDirExists(savePathDir)) {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Please choose exists save directory path",
-                    "Notification",
-                    JOptionPane.INFORMATION_MESSAGE
-                )
+            dirExists.takeIf { !it.checkDirExists(savePathDir) }?.let {
+                messageDialog.showMessageNotification("Please choose exists save directory path")
                 return@addActionListener
             }
 
