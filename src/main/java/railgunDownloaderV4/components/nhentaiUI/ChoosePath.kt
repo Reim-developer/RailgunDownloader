@@ -10,7 +10,6 @@ import javax.swing.ImageIcon
 import javax.swing.JButton
 import javax.swing.JFileChooser
 import javax.swing.JFrame
-import javax.swing.SwingUtilities
 import javax.swing.filechooser.FileSystemView
 
 class ChoosePath (private val nhentaiUI: NhentaiUI) {
@@ -38,10 +37,8 @@ class ChoosePath (private val nhentaiUI: NhentaiUI) {
             chooser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
             chooser.dialogTitle = "Save doujinshi"
 
-            if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                SwingUtilities.invokeLater {
-                    nhentaiUI.pathField.text = chooser.selectedFile.absolutePath
-                }
+            chooser.takeIf { it.showOpenDialog(null) == JFileChooser.APPROVE_OPTION }?.selectedFile?.let {
+                nhentaiUI.pathField.text = it.absolutePath
             }
         }
     }
