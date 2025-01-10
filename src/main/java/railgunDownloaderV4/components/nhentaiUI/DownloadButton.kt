@@ -5,6 +5,7 @@
 package railgunDownloaderV4.components.nhentaiUI
 
 import railgunDownloaderV4.components.nhentaiUI.helper.NhentaiDownloadHelper
+import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
 import java.awt.Image
@@ -24,6 +25,7 @@ class DownloadButton(
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val downloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setDownloadButton(app: JFrame, downloadButton: JButton) {
         downloadButton.setSize(50, 50)
@@ -46,6 +48,9 @@ class DownloadButton(
     }
 
     private fun downloadAction(downloadButton: JButton) {
+
+        clearEvents.clearActionListeners(downloadButton)
+
         downloadButton.addActionListener {
             val inputURL = urlField.text
             val savePathDir = savePathField.text
@@ -72,7 +77,7 @@ class DownloadButton(
 
             downloadHelper.startDownload(
                 "bin/NhentaiHelper/NhentaiURL.lib",
-                "--u   ",
+                "--u",
                 logResultArea,
                 savePathDir,
                 inputURL
