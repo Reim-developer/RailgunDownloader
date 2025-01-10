@@ -24,11 +24,11 @@ class FacebookUI (private val appScene: Application){
     val inputURLField: JTextField by lazy { JTextField() }
     val inputPathField: JTextField by lazy { JTextField() }
     private val openPathButton: JButton by lazy { JButton() }
-    private val logResultArea: JTextArea by lazy { JTextArea() }
+    val logResultArea: JTextArea by lazy { JTextArea() }
     private val buttonDownload: JButton by lazy { JButton() }
-    private val app: JFrame by lazy { JFrame() }
 
     fun showFacebookUI(visible: Boolean = false) {
+        val app = JFrame()
         SwingUtilities.invokeLater {
             app.apply {
                 title = "Download video from Facebook"
