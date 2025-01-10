@@ -10,7 +10,13 @@ import javax.swing.JTextField
 import javax.swing.filechooser.FileSystemView
 
 class PathDialog {
+
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
+
     fun setShowDialog(openPathButton: JButton, dialogTitle: String, pathField: JTextField){
+
+        clearEvents.clearActionListeners(openPathButton)
+
         openPathButton.addActionListener {
             val chooser = JFileChooser(FileSystemView.getFileSystemView())
             chooser.dialogTitle = dialogTitle
