@@ -28,6 +28,7 @@ class OpenPath (private val facebookUI: FacebookUI){
                 openSavePath, "/FolderPath.png",
                 50, 50
             )
+            toolTipText = "Choose save directory"
         }
 
         pathDialog.setShowDialog(
