@@ -5,6 +5,7 @@
 package railgunDownloaderV4.components.mangadexUI
 
 import railgunDownloaderV4.Application
+import railgunDownloaderV4.components.mangadexUI.events.DownloadMangaDex
 import railgunDownloaderV4.components.mangadexUI.events.OpenDir
 import railgunDownloaderV4.components.mangadexUI.events.WindowClosing
 import railgunDownloaderV4.components.ulti.SetIcon
@@ -23,6 +24,7 @@ class MangaDexUI (appScene: Application){
     private val mangaDexButton: MangaDexButton by lazy { MangaDexButton() }
     private val setIcon: SetIcon by lazy { SetIcon() }
     private val openDir: OpenDir by lazy { OpenDir(this) }
+    private val downloadMangaDex: DownloadMangaDex by lazy { DownloadMangaDex(mangaDexIDField, mangaDexSaveDir) }
 
     private val mangaDexIDField: JTextField by lazy { JTextField() }
     val mangaDexSaveDir: JTextField by lazy { JTextField() }
@@ -66,6 +68,7 @@ class MangaDexUI (appScene: Application){
                 Dimension(50, 50), Point(170, 490),
                 "/Download.png", "Download manga"
             )
+            downloadMangaDex.download(downloadMangaButton)
 
             app.isVisible = visible
         }
