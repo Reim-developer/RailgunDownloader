@@ -19,6 +19,7 @@ class LogResult {
             background = Color(69, 69, 69)
             foreground = Color.WHITE
             font = Font("Consolas", Font.PLAIN, 12)
+            toolTipText = "Your download result will be displayed here"
         }
 
             val scrollPanel = JScrollPane(logResultArea)
