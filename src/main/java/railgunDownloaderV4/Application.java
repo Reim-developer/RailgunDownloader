@@ -4,6 +4,7 @@
  */
 package railgunDownloaderV4;
 import railgunDownloaderV4.components.Facebook;
+import railgunDownloaderV4.components.MangaDex;
 import railgunDownloaderV4.components.Youtube;
 import railgunDownloaderV4.components.Nhentai;
 
@@ -16,10 +17,12 @@ public class Application {
     private final Youtube YoutubeComponent;
     private final Nhentai nhentaiComponent;
     private final Facebook facebookComponent;
+    private final MangaDex mangaDexComponent;
 
     private final JButton YoutubeButton;
     private final JButton nhentaiButton;
     private final JButton facebookButton;
+    private final JButton mangaDexButton;
 
 
     public Application() {
@@ -27,9 +30,12 @@ public class Application {
         YoutubeComponent = new Youtube(this);
         nhentaiComponent = new Nhentai(this);
         facebookComponent = new Facebook(this);
+        mangaDexComponent = new MangaDex(this);
+
         YoutubeButton = new JButton();
         nhentaiButton = new JButton();
         facebookButton = new JButton();
+        mangaDexButton = new JButton();
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -38,6 +44,7 @@ public class Application {
             AppScene.YoutubeComponent.SetYoutubeButton(AppScene.YoutubeButton);
             AppScene.nhentaiComponent.setNhentaiUIButton(AppScene.nhentaiButton);
             AppScene.facebookComponent.setFacebookButton(AppScene.facebookButton);
+            AppScene.mangaDexComponent.setMangaDex(AppScene.mangaDexButton);
         });
     }
 
