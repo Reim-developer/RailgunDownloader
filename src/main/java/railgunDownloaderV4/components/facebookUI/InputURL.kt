@@ -20,6 +20,7 @@ class InputURL {
             background = Color(69, 69, 69)
             foreground = Color.WHITE
             border = null
+            toolTipText = "Input your URL here"
         }
 
         app.add(inputURLField)
