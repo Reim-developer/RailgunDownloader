@@ -27,6 +27,7 @@ class Download (private val facebookUI: FacebookUI){
         downloadButton.addActionListener {
             val urlField = facebookUI.inputURLField.text
             val pathField = facebookUI.inputPathField.text
+            val videoQuality = facebookUI.qualityListBox.selectedValue
 
             matchURL.takeIf { !it.matchURL(urlField) }?.let {
                 messageDialog.showMessageNotification("Invalid URL. Please try again")
@@ -40,7 +41,7 @@ class Download (private val facebookUI: FacebookUI){
 
             facebookDownloadHelper.start(
                 "bin/FacebookHelper/FacebookHelper.lib", pathField,
-                urlField, "best", facebookUI.logResultArea
+                urlField, videoQuality, facebookUI.logResultArea
             )
         }
     }
