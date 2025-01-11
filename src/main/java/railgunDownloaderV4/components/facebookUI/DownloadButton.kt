@@ -24,6 +24,7 @@ class DownloadButton (facebookUI: FacebookUI){
             isFocusPainted = false
             isBorderPainted = false
             location = Point(170, 440)
+            toolTipText = "Download Facebook video"
         }
 
         setIconButton.setIcon(
