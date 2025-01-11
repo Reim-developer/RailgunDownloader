@@ -19,6 +19,7 @@ class InputPath {
             border = null
             background = Color(69, 69, 69)
             foreground = Color.WHITE
+            toolTipText = "Your chosen path will be displayed here"
         }
 
         app.add(inputPathField)
