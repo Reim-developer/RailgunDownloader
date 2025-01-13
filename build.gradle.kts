@@ -15,6 +15,7 @@ repositories {
 }
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jsoup:jsoup:1.18.3")
 }
 kotlin {
     jvmToolchain(17)
