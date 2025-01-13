@@ -1,0 +1,9 @@
+.gradle
+.idea
+build
+.kotlin
+*.spec
+*.lib
+dist
+.venv
+RailgunDownloaderV4.iml
