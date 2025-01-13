@@ -23,7 +23,7 @@ class FindByCode (
     private val dirExists: DirExists by lazy { DirExists() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
-    private val nhentaiDownloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
+    private val nhentaiDownloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper(urlInput, pathInput, logArea) }
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setFindByCode(app: JFrame, findByCodeButton: JButton) {
@@ -68,13 +68,6 @@ class FindByCode (
                 return@addActionListener
             }
 
-            nhentaiDownloadHelper.startDownload(
-                "bin/NhentaiHelper/NhentaiCode.lib",
-                "--c",
-                logArea,
-                pathField,
-                doujinshiCode
-            )
         }
     }
 }
