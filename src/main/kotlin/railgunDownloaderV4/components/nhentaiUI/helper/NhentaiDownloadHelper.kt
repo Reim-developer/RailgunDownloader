@@ -7,33 +7,85 @@
  */
 package railgunDownloaderV4.components.nhentaiUI.helper
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.jsoup.Jsoup
+import railgunDownloaderV4.components.ulti.MatchNumber
+import railgunDownloaderV4.components.ulti.MessageDialog
+import java.io.File
+import java.io.FileOutputStream
+import java.net.URI
 import javax.swing.JTextArea
+import javax.swing.JTextField
 import javax.swing.SwingUtilities
-import kotlin.io.path.Path
-import kotlin.io.path.absolutePathString
+import javax.swing.SwingWorker
 
-class NhentaiDownloadHelper {
-    fun startDownload(relativePath: String, downloadOptions: String, logArea: JTextArea, saveDir: String, doujinshiURL: String) {
-        val getPath = Path(relativePath)
-        val absolutePath = getPath.absolutePathString()
+class NhentaiDownloadHelper(
+    private val targetURL: JTextField, private val saveDir: JTextField, private val resultLog: JTextArea
+) {
 
-        val processBuilder = ProcessBuilder(
-            absolutePath,
-            "--d", saveDir,
-            downloadOptions, doujinshiURL
-        )
+    private val messageDialog: MessageDialog by lazy { MessageDialog() }
+    private val matchNumber: MatchNumber by lazy { MatchNumber() }
 
-        val printJobThread = Thread {
-            val process: Process = processBuilder.start()
-            val bufferStdout = BufferedReader(InputStreamReader(process.inputStream))
+    private fun downloadImages(targetUrl: String, saveDir: String, doujinshiDir: String, imageName: String) {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url(targetUrl)
+            .build()
+        val filePath = File("$saveDir/$doujinshiDir", imageName)
 
-            var lineContent: String?
-            while (bufferStdout.readLine().also { lineContent = it } != null) {
-                SwingUtilities.invokeLater { logArea.append("$lineContent\n") }
+        client.newCall(request)
+            .execute().use { response ->
+                response.takeIf { !it.isSuccessful }?.let {
+                    SwingUtilities.invokeLater { resultLog.append("HTTP request failed. Please check your internet connection and try again\n") }
+                }
+
+                FileOutputStream(filePath).use { output ->
+                    response.body?.bytes()?.let { output.write(it) }
+                    SwingUtilities.invokeLater { resultLog.append("Download $imageName\n") }
+                }
             }
+    }
+
+    private fun getBaseName(urlTarget: String): String {
+        return URI(urlTarget).path.substringAfterLast('/')
+    }
+
+    private fun downloadByDoujinshiURL() {
+        val webDocument = Jsoup.connect(targetURL.text).get()
+        val doujinshiCode = webDocument.select("h3#gallery_id")
+        val imgTags = webDocument.select("div.thumbs img.lazyload")
+
+        val doujinshi = doujinshiCode.text().replace("#", "")
+        val saveDoujinshiDir = File("${saveDir.text}/$doujinshi")
+
+        matchNumber.takeIf { !it.matchNumber(doujinshi) }?.let {
+            messageDialog.showMessageNotification("Doujinshi with URL: ${targetURL.text} not found")
+            return
         }
-        printJobThread.start()
+
+        saveDoujinshiDir.takeIf { !it.exists() }?.apply {
+            mkdirs()
+        } ?: run { messageDialog.showMessageNotification("Doujinshi $doujinshi is exists in your PC"); return }
+
+        SwingUtilities.invokeLater { resultLog.append("Send HTTP request to $targetURL, please wait\n") }
+        imgTags.forEach { image ->
+            downloadImages(
+                targetURL.text, saveDir.text, doujinshi,
+                getBaseName(image.attr("data-src"))
+            )
+        }
+        messageDialog.showMessageNotification("Successfully download doujinshi $doujinshiCode")
+    }
+
+    fun executeDownload(choice: String) {
+        object : SwingWorker<Unit, Unit>() {
+            override fun doInBackground() {
+                when(choice) {
+                    "BY_URL" -> downloadByDoujinshiURL()
+                    "BY_CODE" -> TODO("We need added download by code method soon.")
+                }
+            }
+        }.execute()
     }
 }
