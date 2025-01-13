@@ -19,6 +19,7 @@ import javax.swing.JButton
 import javax.swing.JFrame
 import javax.swing.JTextArea
 import javax.swing.JTextField
+import javax.swing.SwingUtilities
 
 class DownloadButton(
     private val urlField: JTextField,
@@ -27,7 +28,7 @@ class DownloadButton(
     ) {
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
-    private val downloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper() }
+        private val downloadHelper: NhentaiDownloadHelper by lazy { NhentaiDownloadHelper(urlField, savePathField, logResultArea) }
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
 
@@ -69,13 +70,7 @@ class DownloadButton(
                 return@addActionListener
             }
 
-            downloadHelper.startDownload(
-                "bin/NhentaiHelper/NhentaiURL.lib",
-                "--u",
-                logResultArea,
-                savePathDir,
-                inputURL
-            )
+            SwingUtilities.invokeLater { downloadHelper.executeDownload("BY_URL") }
         }
     }
 }
