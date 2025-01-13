@@ -1,0 +1,6 @@
+*.lib
+*.exe
+.venv
+build
+dist
+*.spec

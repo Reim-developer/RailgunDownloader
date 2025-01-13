@@ -1,0 +1,9 @@
+ # *
+ # * RAILGUN DOWNLOADER - VERSION 4.0.0
+ # * File: Application.kt
+ # * This project is licensed under GPL-3.0 License.
+ # * LICENSE: https://www.gnu.org/licenses/gpl-3.0.html
+ # * Contribution: Reim
+ # *
+yt_dlp
+pyinstaller
