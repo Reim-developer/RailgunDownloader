@@ -6,7 +6,8 @@
  * Contribution: Reim
  */
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.8.0"
+    kotlin("jvm") version "2.1.0"
+    kotlin("plugin.serialization") version "2.1.0"
 }
 
 group = "RailgunDownloaderV4"
@@ -24,6 +25,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jsoup:jsoup:1.18.3")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 }
 kotlin {
     jvmToolchain(17)
