@@ -68,6 +68,7 @@ class FindByCode (
                 return@addActionListener
             }
 
+            nhentaiDownloadHelper.executeDownload("BY_CODE")
         }
     }
 }
