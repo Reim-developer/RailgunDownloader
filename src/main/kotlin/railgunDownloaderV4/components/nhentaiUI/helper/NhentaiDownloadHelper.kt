@@ -9,12 +9,15 @@ package railgunDownloaderV4.components.nhentaiUI.helper
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.jsoup.Connection.Response
+import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import railgunDownloaderV4.components.ulti.MatchNumber
 import railgunDownloaderV4.components.ulti.MessageDialog
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URI
+import java.net.http.HttpConnectTimeoutException
 import javax.swing.JTextArea
 import javax.swing.JTextField
 import javax.swing.SwingUtilities
@@ -38,6 +41,7 @@ class NhentaiDownloadHelper(
             .execute().use { response ->
                 response.takeIf { !it.isSuccessful }?.let {
                     SwingUtilities.invokeLater { resultLog.append("HTTP request failed. Please check your internet connection and try again\n") }
+                    return
                 }
 
                 FileOutputStream(filePath).use { output ->
@@ -78,12 +82,44 @@ class NhentaiDownloadHelper(
         messageDialog.showMessageNotification("Successfully download doujinshi $doujinshiCode")
     }
 
+    private fun downloadByCode() {
+        SwingUtilities.invokeLater { resultLog.append("Searching doujinshi code: ${targetURL.text}\n") }
+        val webResponse: Response?
+        val doujinshiCodeTarget = "https://nhentai.net/g/${targetURL.text}"
+        try {
+            webResponse = Jsoup.connect(doujinshiCodeTarget).execute()
+        }catch (exception: HttpStatusException) {
+            messageDialog.showMessageNotification("Doujinshi ${targetURL.text} not found")
+            return
+        } catch (exception: HttpConnectTimeoutException) {
+            messageDialog.showMessageNotification("Connection timeout. Please check your internet connection and try again")
+            return
+        }
+        val webDocument = webResponse.parse()
+        val doujinshiCode = webDocument.select("h3#gallery_id")
+        val imgTags = webDocument.select("div.thumbs img.lazyload")
+        val doujinshi = doujinshiCode.text().replace("#", "")
+
+        val saveDoujinshiDir = File("${saveDir.text}/$doujinshi")
+        saveDoujinshiDir.takeIf { !it.exists() }?.apply {
+            mkdirs()
+        } ?: run { messageDialog.showMessageNotification("Doujinshi $doujinshi is exists in your PC"); return }
+
+        SwingUtilities.invokeLater { resultLog.append("Find doujinshi code $doujinshi, please wait\n") }
+        imgTags.forEach{image ->
+            downloadImages(
+                doujinshiCodeTarget, saveDir.text, doujinshi,
+                getBaseName(image.attr("data-src"))
+            )
+        }
+    }
+
     fun executeDownload(choice: String) {
         object : SwingWorker<Unit, Unit>() {
             override fun doInBackground() {
                 when(choice) {
                     "BY_URL" -> downloadByDoujinshiURL()
-                    "BY_CODE" -> TODO("We need added download by code method soon.")
+                    "BY_CODE" -> downloadByCode()
                 }
             }
         }.execute()
