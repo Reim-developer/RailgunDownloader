@@ -4,11 +4,11 @@
 **Build Requirements & Usage:**
 
 - Build dependencies:
-  - `Open-JDK 21` [Download](https://jdk.java.net/)
+  - `Open-JDK 17` [Download](https://jdk.java.net/)
   - `Python >= 3.11` [Download](https://www.python.org/downloads/)
   - `Gradle 8.10.2` [Download](https://gradle.org/install/)
   - A Java IDE, such as Eclipse or IntelliJ IDEA.
-  - Basic acknowledge of Java and Python programing language.
+  - Basic acknowledge of Java, Kotlin and Python programing language.
 
 
 - Install & Usage:
