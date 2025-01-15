@@ -5,6 +5,8 @@ build
 *.spec
 *.lib
 dist
+*.bin
+*.exe
 .venv
 RailgunDownloaderV4.iml
 test
