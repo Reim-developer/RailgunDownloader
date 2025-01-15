@@ -20,15 +20,18 @@ class TextField {
         textField: JTextField,
         size: Dimension,
         location: Point,
+        canEditable: Boolean,
         toolTipText: String
     ) {
         textField.size = size
         textField.location = location
         textField.toolTipText = toolTipText
         textField.border = null
+        textField.isEditable = canEditable
         textField.background = Color(69, 69, 69)
         textField.foreground = Color.WHITE
         textField.font = Font("Consolas", Font.PLAIN, 12)
+        textField.isVisible = true
 
         app.add(textField)
     }
