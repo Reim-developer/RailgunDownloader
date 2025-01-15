@@ -7,10 +7,7 @@
  */
 package railgunDownloaderV4
 
-import railgunDownloaderV4.components.Facebook
-import railgunDownloaderV4.components.MangaDex
-import railgunDownloaderV4.components.Nhentai
-import railgunDownloaderV4.components.Youtube
+import railgunDownloaderV4.components.*
 import railgunDownloaderV4.components.ulti.SetIcon
 import java.awt.Color
 import java.awt.Dimension
@@ -21,16 +18,18 @@ import javax.swing.WindowConstants
 
 class Application {
     val app: JFrame by lazy { JFrame() }
-    private val youtube: Youtube by lazy { Youtube(this) }
+    private val youtubeComponent: Youtube by lazy { Youtube(this) }
     private val nhentaiComponent: Nhentai by lazy { Nhentai(this) }
     private val facebookComponent: Facebook by lazy { Facebook(this) }
     private val mangaDexComponent: MangaDex by lazy { MangaDex(this) }
+    private val hitomiComponent: Hitomi by lazy { Hitomi(this) }
     private val setIcon: SetIcon by lazy { SetIcon() }
 
     private val youtubeButton: JButton by lazy { JButton() }
     private val nhentaiButton: JButton by lazy { JButton() }
     private val facebookButton: JButton by lazy { JButton() }
     private val mangaDexButton: JButton by lazy { JButton() }
+    private val hitomiButton: JButton by lazy { JButton() }
 
     private fun setProperty() {
         app.title = "Railgun Downloader V4"
@@ -51,10 +50,11 @@ class Application {
             SwingUtilities.invokeLater {
                 val appScene = Application()
                 appScene.setProperty()
-                appScene.youtube.setYoutubeButton(appScene.youtubeButton)
+                appScene.youtubeComponent.setYoutubeButton(appScene.youtubeButton)
                 appScene.nhentaiComponent.setNhentaiUIButton(appScene.nhentaiButton)
                 appScene.facebookComponent.setFacebookButton(appScene.facebookButton)
                 appScene.mangaDexComponent.setMangaDex(appScene.mangaDexButton)
+                appScene.hitomiComponent.setHitomiButton(appScene.hitomiButton)
             }
         }
     }
