@@ -10,6 +10,7 @@ package railgunDownloaderV4.components.hitomiUI
 
 import railgunDownloaderV4.components.global.ButtonUI
 import railgunDownloaderV4.components.global.TextField
+import railgunDownloaderV4.components.ulti.PathDialog
 import java.awt.Dimension
 import java.awt.Point
 import javax.swing.JButton
@@ -20,6 +21,7 @@ class LoadComponents {
 
     private val textField: TextField by lazy { TextField() }
     private val buttonUI: ButtonUI by lazy { ButtonUI() }
+    private val pathDialog: PathDialog by lazy { PathDialog() }
 
     private val urlField: JTextField by lazy { JTextField() }
     private val pathField: JTextField by lazy { JTextField() }
@@ -47,6 +49,10 @@ class LoadComponents {
             appTarget, saveDirButton, Dimension(50, 50),
             Point(200, 450), "/FolderPath.png",
             "Choose save directory path"
+        )
+        pathDialog.setShowDialog(
+            saveDirButton, "Choose save directory",
+            pathField
         )
     }
 }
