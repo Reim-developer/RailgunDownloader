@@ -20,6 +20,7 @@ class HitomiUI (private val appScene: Application){
 
     private val goHome: GoHome by lazy { GoHome(appScene) }
     private val setIcon: SetIcon by lazy {  SetIcon() }
+    private val loadComponents: LoadComponents by lazy { LoadComponents() }
 
     fun setHitomiUI(visible: Boolean) {
         val app = JFrame("Download from Hitomi.la")
@@ -29,8 +30,10 @@ class HitomiUI (private val appScene: Application){
         app.contentPane.background = Color(21, 21, 21)
         app.defaultCloseOperation = WindowConstants.DISPOSE_ON_CLOSE
         app.setLocationRelativeTo(null)
-        app.isVisible = visible
+        app.layout = null
         app.iconImage = setIcon.setAppIcon()
+        loadComponents.setLoadComponents(app)
+        app.isVisible = visible
 
         goHome.setGoHome(app)
     }
