@@ -26,7 +26,6 @@ dependencies {
     implementation("org.jsoup:jsoup:1.18.3")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-    implementation("org.htmlunit:htmlunit:4.8.0")
 }
 kotlin {
     jvmToolchain(17)
