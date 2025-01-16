@@ -13,14 +13,20 @@ import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
 import railgunDownloaderV4.components.ulti.MessageDialog
 import javax.swing.JButton
+import javax.swing.JTextArea
 import javax.swing.JTextField
 
-class HitomiDownload (private val urlField: JTextField, private val pathField: JTextField){
+class HitomiDownload (
+    private val urlField: JTextField,
+    private val pathField: JTextField,
+    private val resultArea: JTextArea
+){
 
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
+    private val downloader: Downloader by lazy { Downloader(urlField, pathField, resultArea) }
 
     fun setHitomiDownload(buttonTarget: JButton) {
         clearEvents.clearActionListeners(buttonTarget)
@@ -34,9 +40,10 @@ class HitomiDownload (private val urlField: JTextField, private val pathField: J
             dirExists.takeIf { !it.checkDirExists(pathField.text) }?.let {
                 messageDialog.showMessageNotification("Please choose valid save path directory")
                 return@addActionListener
+
             }
 
-
+            downloader.setDownloader()
         }
     }
 }
