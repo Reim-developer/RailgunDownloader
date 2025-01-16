@@ -25,7 +25,7 @@ class LoadComponents {
     private val textField: TextField by lazy { TextField() }
     private val buttonUI: ButtonUI by lazy { ButtonUI() }
     private val pathDialog: PathDialog by lazy { PathDialog() }
-    private val hitomiDownload: HitomiDownload by lazy { HitomiDownload(urlField, pathField) }
+    private val hitomiDownload: HitomiDownload by lazy { HitomiDownload(urlField, pathField, logArea) }
     private val logResult: LogResult by lazy { LogResult() }
 
     private val urlField: JTextField by lazy { JTextField() }
