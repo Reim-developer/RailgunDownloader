@@ -23,6 +23,7 @@ class Application {
     private val facebookComponent: Facebook by lazy { Facebook(this) }
     private val mangaDexComponent: MangaDex by lazy { MangaDex(this) }
     private val hitomiComponent: Hitomi by lazy { Hitomi(this) }
+    private val bilibiliComponent: Bilibili by lazy { Bilibili(this) }
     private val setIcon: SetIcon by lazy { SetIcon() }
 
     private val youtubeButton: JButton by lazy { JButton() }
@@ -30,6 +31,7 @@ class Application {
     private val facebookButton: JButton by lazy { JButton() }
     private val mangaDexButton: JButton by lazy { JButton() }
     private val hitomiButton: JButton by lazy { JButton() }
+    private val bilibiliButton: JButton by lazy { JButton() }
 
     private fun setProperty() {
         app.title = "Railgun Downloader V4"
@@ -55,6 +57,7 @@ class Application {
                 appScene.facebookComponent.setFacebookButton(appScene.facebookButton)
                 appScene.mangaDexComponent.setMangaDex(appScene.mangaDexButton)
                 appScene.hitomiComponent.setHitomiButton(appScene.hitomiButton)
+                appScene.bilibiliComponent.setBilibili(appScene.bilibiliButton)
             }
         }
     }
