@@ -31,9 +31,10 @@ class ButtonUI {
         button.border = null
         button.isFocusPainted = false
         button.isBorderPainted = false
+
         setIconButton.setIcon(
             button, iconPath,
-            50, 50
+            button.width, button.height
         )
         button.toolTipText = toolTipText
 
