@@ -7,6 +7,7 @@
 */
 package railgunDownloaderV4.components.bilibiliUI
 
+import railgunDownloaderV4.components.bilibiliUI.events.Download
 import railgunDownloaderV4.components.global.LogResult
 import railgunDownloaderV4.components.global.TextField
 import railgunDownloaderV4.components.global.ButtonUI
@@ -24,6 +25,7 @@ class LoadComponents {
     private val logResult: LogResult by lazy { LogResult() }
     private val setButtonUI: ButtonUI by lazy { ButtonUI() }
     private val pathDialog: PathDialog by lazy { PathDialog() }
+    private val download: Download by lazy { Download(urlField, pathField, resultLog) }
 
     private val urlField: JTextField by lazy { JTextField() }
     private val pathField: JTextField by lazy { JTextField() }
@@ -52,6 +54,7 @@ class LoadComponents {
             Dimension(50, 50), Point(100, 490),
             "/Download.png", "Download video from Bilibili"
         )
+        download.setDownload(downloadButton)
         setButtonUI.setButtonUI(
             appTarget, saveDirButton,
             Dimension(50, 50), Point(160, 490),
