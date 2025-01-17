@@ -8,16 +8,17 @@
 package railgunDownloaderV4.components
 
 import railgunDownloaderV4.Application
+import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.youtubeUI.YoutubeUI
 import java.awt.Image
 import java.awt.Toolkit
 import java.util.*
 import javax.swing.ImageIcon
 import javax.swing.JButton
-import javax.swing.SwingUtilities
 
 class Youtube(private val appScene: Application) {
-    private val uiContext = YoutubeUI(appScene)
+    private val youtubeUI: YoutubeUI by lazy { YoutubeUI(appScene) }
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setYoutubeButton(youtubeButton: JButton) {
         youtubeButton.setSize(50, 50)
@@ -41,12 +42,13 @@ class Youtube(private val appScene: Application) {
         appScene.app.add(youtubeButton)
     }
 
-    private fun openYoutubeUI(youtubeUI: JButton) {
-        SwingUtilities.invokeLater {
-            youtubeUI.addActionListener {
-                uiContext.showYoutubeUI(true)
-                appScene.app.isVisible = false
-            }
+    private fun openYoutubeUI(buttonTarget: JButton) {
+        clearEvents.clearActionListeners(buttonTarget)
+
+        buttonTarget.addActionListener {
+            youtubeUI.showYoutubeUI(true)
+            appScene.app.isVisible = false
         }
+
     }
 }
