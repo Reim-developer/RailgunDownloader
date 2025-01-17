@@ -7,6 +7,7 @@
  */
 package railgunDownloaderV4.components.youtubeUI
 
+import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.SetIconButton
 import java.awt.Dimension
 import java.awt.Point
@@ -17,6 +18,7 @@ import javax.swing.JFrame
 class ChoosePath(private val youtubeUI: YoutubeUI) {
 
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setChoosePath(app: JFrame, choosePathButton: JButton) {
         val browserFolder = JFileChooser()
@@ -37,6 +39,8 @@ class ChoosePath(private val youtubeUI: YoutubeUI) {
     }
 
     private fun openSaveDir(folderBrowser: JFileChooser, choosePathButton: JButton) {
+        clearEvents.clearActionListeners(choosePathButton)
+        
         choosePathButton.addActionListener {
             folderBrowser.fileSelectionMode = JFileChooser.DIRECTORIES_ONLY
             folderBrowser.dialogTitle = "Choose save directory path"
