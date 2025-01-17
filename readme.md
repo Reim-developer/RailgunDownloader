@@ -14,3 +14,14 @@
 - Install & Usage:
   - Get latest version of Railgun Downloader at Releases page
   - Extract the downloaded folder to your desired directory path
+  
+# Supported download from:
+|     Site      | URL                          | Download type  |
+|:-------------:|------------------------------|----------------|
+|  **Youtube**  | **https://youtube.com**      | Video/Playlist |
+ |  **Nhentai**  | **https://nhentai.net**      | Image          |
+  |  **Hitomi**   | **https://hitomi.la**        | Image          |
+| **Bilibili**  | **https://www.bilibili.tv/** | Video          |
+| **Instagram** | **https://instagram.com**    | Video          |
+| **Facebook**  | **https://facebook.com**     | Video          |
+| **MangaDex**  | **https://mangadex.org**     | Image          |
