@@ -7,10 +7,7 @@
  */
 package railgunDownloaderV4.components.youtubeUI
 
-import railgunDownloaderV4.components.ulti.DirExists
-import railgunDownloaderV4.components.ulti.MatchURL
-import railgunDownloaderV4.components.ulti.MessageDialog
-import railgunDownloaderV4.components.ulti.SetIconButton
+import railgunDownloaderV4.components.ulti.*
 import railgunDownloaderV4.components.youtubeUI.helper.DownloadHelper
 import java.awt.Dimension
 import java.awt.Point
@@ -24,6 +21,7 @@ class DownloadButton(private val youtubeUIContext: YoutubeUI) {
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setDownloadButton(app: JFrame, downloadButton: JButton) {
         setIconButton.setIcon(
@@ -45,6 +43,8 @@ class DownloadButton(private val youtubeUIContext: YoutubeUI) {
     }
 
     private fun download(downloadButton: JButton) {
+        clearEvents.clearActionListeners(downloadButton)
+
         downloadButton.addActionListener {
             val inputURLValue = youtubeUIContext.urlField.text
             val savePathValue = youtubeUIContext.pathField.text
