@@ -7,6 +7,7 @@
  */
 package railgunDownloaderV4.components.youtubeUI
 
+import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.ProcessCancel
 import railgunDownloaderV4.components.ulti.SetIconButton
 import java.awt.Dimension
@@ -19,6 +20,7 @@ class CancelDownload {
 
     private val cancelProcess: ProcessCancel by lazy { ProcessCancel() }
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
+    private val clearEvents: ClearEvents by lazy { ClearEvents() }
 
     fun setCancelDownload(app: JFrame, cancelDownloadButton: JButton) {
         cancelDownloadButton.size = Dimension(50, 50)
@@ -33,17 +35,22 @@ class CancelDownload {
         )
         cancelDownloadButton.toolTipText = "Cancel download"
 
-        cancelDownloadButton.addActionListener { cancelDownloadHelper() }
+        cancelDownloadHelper(cancelDownloadButton)
+
         app.add(cancelDownloadButton)
     }
 
-    private fun cancelDownloadHelper() {
-        cancelProcess.taskKill("Youtube.lib")
-        JOptionPane.showMessageDialog(
-            null,
-            "Successfully end process",
-            "Info",
-            JOptionPane.INFORMATION_MESSAGE
-        )
+    private fun cancelDownloadHelper(buttonTarget: JButton) {
+        clearEvents.clearActionListeners(buttonTarget)
+
+        buttonTarget.addActionListener {
+            cancelProcess.taskKill("Youtube.lib")
+            JOptionPane.showMessageDialog(
+                null,
+                "Successfully end process",
+                "Info",
+                JOptionPane.INFORMATION_MESSAGE
+            )
+        }
     }
 }
