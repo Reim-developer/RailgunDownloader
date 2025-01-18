@@ -28,6 +28,7 @@ class LogResult {
         logArea.foreground = Color.WHITE
         logArea.font = Font("Consolas", Font.PLAIN, 12)
         logArea.isEditable = false
+        logArea.lineWrap = true
         logArea.toolTipText = toolTipText
 
         val scrollPanel = JScrollPane(logArea)
