@@ -26,6 +26,7 @@ class Application {
     private val bilibiliComponent: Bilibili by lazy { Bilibili(this) }
     private val instagramComponent: Instagram by lazy { Instagram(this) }
     private val tiktokComponent: Tiktok by lazy { Tiktok(this) }
+    private val deviantArtComponent: DeviantArt by lazy { DeviantArt(this) }
     private val setIcon: SetIcon by lazy { SetIcon() }
 
     private val youtubeButton: JButton by lazy { JButton() }
@@ -36,6 +37,7 @@ class Application {
     private val bilibiliButton: JButton by lazy { JButton() }
     private val instagramButton: JButton by lazy { JButton() }
     private val tiktokButton: JButton by lazy { JButton() }
+    private val deviantArtButton: JButton by lazy { JButton() }
 
     private fun setProperty() {
         app.title = "Railgun Downloader V4"
@@ -64,6 +66,7 @@ class Application {
                 appScene.bilibiliComponent.setBilibili(appScene.bilibiliButton)
                 appScene.instagramComponent.setInstagram(appScene.instagramButton)
                 appScene.tiktokComponent.setTiktok(appScene.tiktokButton)
+                appScene.deviantArtComponent.setDevianArt(appScene.deviantArtButton)
             }
         }
     }
