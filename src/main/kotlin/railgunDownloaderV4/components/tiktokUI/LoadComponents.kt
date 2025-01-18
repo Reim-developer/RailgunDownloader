@@ -10,6 +10,8 @@ package railgunDownloaderV4.components.tiktokUI
 import railgunDownloaderV4.components.global.ButtonUI
 import railgunDownloaderV4.components.global.LogResult
 import railgunDownloaderV4.components.global.TextField
+import railgunDownloaderV4.components.tiktokUI.events.Download
+import railgunDownloaderV4.components.ulti.PathDialog
 import java.awt.Dimension
 import java.awt.Point
 import javax.swing.JButton
@@ -22,6 +24,8 @@ class LoadComponents {
     private val textField: TextField by lazy { TextField() }
     private val logResult: LogResult by lazy { LogResult() }
     private val buttonUI: ButtonUI by lazy { ButtonUI() }
+    private val pathDialog: PathDialog by lazy { PathDialog() }
+    private val download: Download by lazy { Download(urlField, pathField, logArea) }
 
     private val urlField: JTextField by lazy { JTextField() }
     private val pathField: JTextField by lazy { JTextField() }
@@ -51,10 +55,16 @@ class LoadComponents {
             Dimension(50, 50), Point(100, 485),
             "/Download.png", "Download video from Tiktok"
         )
+        download.setDownload(downloadButton)
+
         buttonUI.setButtonUI(
             appTarget, saveDirButton,
             Dimension(50, 50), Point(170, 485),
             "/FolderPath.png", "Choose your save directory path"
+        )
+        pathDialog.setShowDialog(
+            saveDirButton, "Choose your save directory path",
+            pathField
         )
     }
 }
