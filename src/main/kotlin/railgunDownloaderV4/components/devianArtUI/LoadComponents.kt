@@ -8,6 +8,7 @@
 
 package railgunDownloaderV4.components.devianArtUI
 
+import railgunDownloaderV4.components.devianArtUI.events.Download
 import railgunDownloaderV4.components.global.ButtonUI
 import railgunDownloaderV4.components.global.LogResult
 import railgunDownloaderV4.components.global.TextField
@@ -25,6 +26,7 @@ class LoadComponents {
     private val logResult: LogResult by lazy { LogResult() }
     private val buttonUI: ButtonUI by lazy { ButtonUI() }
     private val pathDialog: PathDialog by lazy { PathDialog() }
+    private val download: Download by lazy { Download(urlField, pathField, logArea) }
 
     private val urlField: JTextField by lazy { JTextField() }
     private val pathField: JTextField by lazy { JTextField() }
@@ -53,6 +55,8 @@ class LoadComponents {
             Dimension(50, 50), Point(100, 490),
             "/Download.png", "Download image from DevianArt"
         )
+        download.setDownload(downloadButton)
+
         buttonUI.setButtonUI(
             appTarget, saveDirButton,
             Dimension(50, 50), Point(180, 490),
