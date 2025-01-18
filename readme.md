@@ -25,3 +25,4 @@
 | **Instagram** | **https://instagram.com**    | Video          |
 | **Facebook**  | **https://facebook.com**     | Video          |
 | **MangaDex**  | **https://mangadex.org**     | Image          |
+|  **TikTok**   | **https://www.tiktok.com/**  | Video          |
