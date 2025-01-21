@@ -7,8 +7,8 @@
  */
 package railgunDownloaderV4.components.youtubeUI
 
+import railgunDownloaderV4.components.global.events.DownloadVideoProcess
 import railgunDownloaderV4.components.ulti.*
-import railgunDownloaderV4.components.youtubeUI.helper.DownloadHelper
 import java.awt.Dimension
 import java.awt.Point
 import javax.swing.JButton
@@ -16,12 +16,12 @@ import javax.swing.JFrame
 
 class DownloadButton(private val youtubeUIContext: YoutubeUI) {
 
-    private val downloadHelper: DownloadHelper by lazy { DownloadHelper() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
     private val setIconButton: SetIconButton by lazy { SetIconButton() }
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
+    private val downloadVideoProcess: DownloadVideoProcess by lazy { DownloadVideoProcess() }
 
     fun setDownloadButton(app: JFrame, downloadButton: JButton) {
         setIconButton.setIcon(
@@ -48,7 +48,6 @@ class DownloadButton(private val youtubeUIContext: YoutubeUI) {
         downloadButton.addActionListener {
             val inputURLValue = youtubeUIContext.urlField.text
             val savePathValue = youtubeUIContext.pathField.text
-            val qualityValue = youtubeUIContext.qualityBox.selectedValue
 
             matchURL.takeIf { !it.matchURL(inputURLValue) }?.let {
                 messageDialog.showMessageNotification(
@@ -64,10 +63,9 @@ class DownloadButton(private val youtubeUIContext: YoutubeUI) {
                 return@addActionListener
             }
 
-            downloadHelper.startDownload(
-                youtubeUIContext.resultLog, inputURLValue,
-                qualityValue, savePathValue
-            )
+           downloadVideoProcess.setDownloadVideoProcess(
+               inputURLValue, savePathValue, youtubeUIContext.resultLog
+           )
         }
     }
 }
