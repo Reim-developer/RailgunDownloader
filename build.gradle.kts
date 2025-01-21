@@ -26,6 +26,8 @@ dependencies {
     implementation("org.jsoup:jsoup:1.18.3")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
     implementation("org.seleniumhq.selenium:selenium-java:4.27.0")
 }
 kotlin {
