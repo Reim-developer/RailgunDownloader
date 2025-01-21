@@ -1,5 +1,0 @@
-.venv
-*.spec
-*.lib
-dist
-build
