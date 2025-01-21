@@ -21,6 +21,7 @@ class LogResult {
         logResultArea.foreground = Color.WHITE
         logResultArea.font = Font("Consolas", Font.PLAIN, 12)
         logResultArea.toolTipText = "Your download process will be displayed here"
+        logResultArea.lineWrap = true
 
         val scrollPanel = JScrollPane(logResultArea)
         scrollPanel.verticalScrollBarPolicy = JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
