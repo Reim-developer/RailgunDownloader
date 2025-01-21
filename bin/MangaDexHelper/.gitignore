@@ -1,6 +1,0 @@
-.venv
-*.lib
-*.exe
-*.spec
-dist
-build
