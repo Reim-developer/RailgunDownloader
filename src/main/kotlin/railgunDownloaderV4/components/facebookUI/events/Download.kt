@@ -7,7 +7,7 @@
  */
 package railgunDownloaderV4.components.facebookUI.events
 import railgunDownloaderV4.components.facebookUI.FacebookUI
-import railgunDownloaderV4.components.facebookUI.helper.FacebookDownloadHelper
+import railgunDownloaderV4.components.global.events.DownloadVideoProcess
 import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
@@ -21,7 +21,7 @@ class Download (private val facebookUI: FacebookUI){
     private val matchURL: MatchURL by lazy { MatchURL() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val messageDialog: MessageDialog by lazy {  MessageDialog() }
-    private val facebookDownloadHelper: FacebookDownloadHelper by lazy { FacebookDownloadHelper() }
+    private val downloadVideoProcess: DownloadVideoProcess by lazy { DownloadVideoProcess() }
 
     fun setDownload(downloadButton: JButton) {
 
@@ -30,7 +30,6 @@ class Download (private val facebookUI: FacebookUI){
         downloadButton.addActionListener {
             val urlField = facebookUI.inputURLField.text
             val pathField = facebookUI.inputPathField.text
-            val videoQuality = facebookUI.qualityListBox.selectedValue
 
             matchURL.takeIf { !it.matchURL(urlField) }?.let {
                 messageDialog.showMessageNotification("Invalid URL. Please try again")
@@ -42,9 +41,8 @@ class Download (private val facebookUI: FacebookUI){
                 return@addActionListener
             }
 
-            facebookDownloadHelper.start(
-                "bin/FacebookHelper/FacebookHelper.lib", pathField,
-                urlField, videoQuality, facebookUI.logResultArea
+            downloadVideoProcess.setDownloadVideoProcess(
+                urlField, pathField, facebookUI.logResultArea
             )
         }
     }
