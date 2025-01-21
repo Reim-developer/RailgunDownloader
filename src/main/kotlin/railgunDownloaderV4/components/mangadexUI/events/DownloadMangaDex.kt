@@ -7,7 +7,7 @@
  */
 package railgunDownloaderV4.components.mangadexUI.events
 
-import railgunDownloaderV4.components.mangadexUI.helper.MangaDexDownload
+import railgunDownloaderV4.components.mangadexUI.helper.MangaDexAPI
 import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MessageDialog
@@ -20,7 +20,7 @@ class DownloadMangaDex (private val inputURLField: JTextField, private val saveD
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
     private val dirExists: DirExists by lazy { DirExists() }
     private val messageDialog: MessageDialog by lazy { MessageDialog() }
-    private val mangaDexDownload: MangaDexDownload by lazy { MangaDexDownload() }
+    private val mangaDexAPI: MangaDexAPI by lazy { MangaDexAPI(logResult) }
 
     fun download(downloadButton: JButton) {
         clearEvents.clearActionListeners(downloadButton)
@@ -39,10 +39,8 @@ class DownloadMangaDex (private val inputURLField: JTextField, private val saveD
                 return@addActionListener
             }
 
-            mangaDexDownload.start(
-                "bin/MangaDexHelper/MangaDexHelper.lib",
-                saveDirField, urlField, logResult
-            )
+            logResult.append("Starting fetch MangaID $urlField, please wait...\n")
+            mangaDexAPI.startDownloadProcess(urlField, saveDirField )
         }
     }
 }
