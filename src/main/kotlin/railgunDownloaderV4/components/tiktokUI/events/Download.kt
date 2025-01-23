@@ -13,13 +13,15 @@ import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
 import railgunDownloaderV4.components.ulti.MessageDialog
 import javax.swing.JButton
+import javax.swing.JList
 import javax.swing.JTextArea
 import javax.swing.JTextField
 
 class Download(
     private val urlField: JTextField,
     private val pathField: JTextField,
-    private val logArea: JTextArea
+    private val logArea: JTextArea,
+    private val qualityList: JList<String>
 ) {
 
     private val matchURL: MatchURL by lazy { MatchURL() }
@@ -39,11 +41,15 @@ class Download(
                 return@addActionListener
             }
 
-            downloadVideoProcess.setDownloadVideoProcess(
-                urlField.text,
-                pathField.text,
-                logArea, "best"
-            )
+            val quality = qualityList.selectedValue
+            when(quality) {
+                "Best Quality" ->  downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "best")
+                "Worst Quality" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "worst")
+                "Best Video" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "bestvideo")
+                "Worst Video" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "worstvideo")
+                "Best Audio" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "bestaudio")
+                "Worst Audio" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "worstaudio")
+            }
         }
     }
 }
