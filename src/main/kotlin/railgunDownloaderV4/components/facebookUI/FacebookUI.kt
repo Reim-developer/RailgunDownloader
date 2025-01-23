@@ -8,7 +8,7 @@
 package railgunDownloaderV4.components.facebookUI
 
 import railgunDownloaderV4.Application
-import railgunDownloaderV4.components.facebookUI.events.ClosingWindow
+import railgunDownloaderV4.components.global.events.GoHome
 import railgunDownloaderV4.components.ulti.SetIcon
 import java.awt.Color
 import java.awt.Dimension
@@ -17,22 +17,8 @@ import javax.swing.*
 class FacebookUI (private val appScene: Application){
 
     private val setIcon: SetIcon by lazy { SetIcon() }
-    private val closingWindow: ClosingWindow by lazy { ClosingWindow(appScene) }
-    private val inputURL: InputURL by lazy { InputURL() }
-    private val inputPath: InputPath by lazy { InputPath() }
-    private val openPath: OpenPath by lazy { OpenPath(this) }
-    private val logResult: LogResult by lazy { LogResult() }
-    private val downloadButton: DownloadButton by lazy { DownloadButton(this) }
-    private val qualityList: QualityList by lazy { QualityList() }
-
-    val inputURLField: JTextField by lazy { JTextField() }
-    val inputPathField: JTextField by lazy { JTextField() }
-    val logResultArea: JTextArea by lazy { JTextArea() }
-    val qualityListBox: JList<String> by lazy { JList() }
-    private val openPathButton: JButton by lazy { JButton() }
-    private val buttonDownload: JButton by lazy { JButton() }
-
-
+    private val goHome: GoHome by lazy { GoHome(appScene) }
+    private val loadComponents: LoadComponents by lazy { LoadComponents() }
 
     fun showFacebookUI(visible: Boolean = false) {
         val app = JFrame()
@@ -48,14 +34,8 @@ class FacebookUI (private val appScene: Application){
                 iconImage = setIcon.setAppIcon()
                 isVisible = visible
 
-                inputURL.setURL(app, inputURLField)
-                inputPath.setInputPath(app, inputPathField)
-                openPath.setOpenPath(app, openPathButton)
-                logResult.setLogResult(app, logResultArea)
-                downloadButton.setDownloadButton(app, buttonDownload)
-                qualityList.setQualityList(app, qualityListBox)
-
-                closingWindow.returnHome(app)
+                loadComponents.setLoadComponents(app)
+                goHome.setGoHome(app)
             }
         }
     }
