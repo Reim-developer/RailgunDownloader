@@ -11,11 +11,13 @@ import railgunDownloaderV4.components.bilibiliUI.events.Download
 import railgunDownloaderV4.components.global.LogResult
 import railgunDownloaderV4.components.global.TextField
 import railgunDownloaderV4.components.global.ButtonUI
+import railgunDownloaderV4.components.global.QualityBox
 import railgunDownloaderV4.components.ulti.PathDialog
 import java.awt.Dimension
 import java.awt.Point
 import javax.swing.JButton
 import javax.swing.JFrame
+import javax.swing.JList
 import javax.swing.JTextArea
 import javax.swing.JTextField
 
@@ -25,11 +27,13 @@ class LoadComponents {
     private val logResult: LogResult by lazy { LogResult() }
     private val setButtonUI: ButtonUI by lazy { ButtonUI() }
     private val pathDialog: PathDialog by lazy { PathDialog() }
-    private val download: Download by lazy { Download(urlField, pathField, resultLog) }
+    private val qualityBox: QualityBox by lazy { QualityBox() }
+    private val download: Download by lazy { Download(urlField, pathField, resultLog, qualityList) }
 
     private val urlField: JTextField by lazy { JTextField() }
     private val pathField: JTextField by lazy { JTextField() }
     private val resultLog: JTextArea by lazy { JTextArea() }
+    private val qualityList: JList<String> by lazy { JList<String>() }
     private val downloadButton: JButton by lazy { JButton() }
     private val saveDirButton: JButton by lazy { JButton() }
 
@@ -63,6 +67,11 @@ class LoadComponents {
         pathDialog.setShowDialog(
             saveDirButton, "Download from Bilibili",
             pathField
+        )
+
+        qualityBox.setQualityBox(
+            appTarget, qualityList,
+            Point(20, 390), Dimension(70, 150)
         )
     }
 }
