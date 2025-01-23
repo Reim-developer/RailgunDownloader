@@ -6,16 +6,23 @@
  * Contribution: Reim
  */
 package railgunDownloaderV4.components.facebookUI.events
-import railgunDownloaderV4.components.facebookUI.FacebookUI
 import railgunDownloaderV4.components.global.events.DownloadVideoProcess
 import railgunDownloaderV4.components.ulti.ClearEvents
 import railgunDownloaderV4.components.ulti.DirExists
 import railgunDownloaderV4.components.ulti.MatchURL
 import railgunDownloaderV4.components.ulti.MessageDialog
 import javax.swing.JButton
+import javax.swing.JTextArea
+import javax.swing.JTextField
+import javax.swing.JList
 
 
-class Download (private val facebookUI: FacebookUI){
+class Download (
+    private val urlField: JTextField,
+    private val pathField: JTextField,
+    private val logArea: JTextArea,
+    private val qualityList: JList<String>
+){
 
     private val clearEvents: ClearEvents by lazy { ClearEvents() }
     private val matchURL: MatchURL by lazy { MatchURL() }
@@ -28,22 +35,26 @@ class Download (private val facebookUI: FacebookUI){
         clearEvents.clearActionListeners(downloadButton)
 
         downloadButton.addActionListener {
-            val urlField = facebookUI.inputURLField.text
-            val pathField = facebookUI.inputPathField.text
-
-            matchURL.takeIf { !it.matchURL(urlField) }?.let {
+            matchURL.takeIf { !it.matchURL(urlField.text) }?.let {
                 messageDialog.showMessageNotification("Invalid URL. Please try again")
                 return@addActionListener
             }
 
-            dirExists.takeIf { !it.checkDirExists(pathField) }?.let {
+            dirExists.takeIf { !it.checkDirExists(pathField.text) }?.let {
                 messageDialog.showMessageNotification("Invalid directory. Please try again")
                 return@addActionListener
             }
 
-            downloadVideoProcess.setDownloadVideoProcess(
-                urlField, pathField, facebookUI.logResultArea
-            )
+            val quality = qualityList.selectedValue
+            when(quality) {
+                "Best Quality" ->  downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "best")
+                "Worst Quality" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "worst")
+                "Best Video" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "bestvideo")
+                "Worst Video" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "worstvideo")
+                "Best Audio" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "bestaudio")
+                "Worst Audio" -> downloadVideoProcess.setDownloadVideoProcess(urlField.text, pathField.text, logArea, "worstaudio")
+            }
+
         }
     }
 }
