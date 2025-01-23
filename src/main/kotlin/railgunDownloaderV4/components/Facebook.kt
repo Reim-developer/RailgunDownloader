@@ -9,25 +9,22 @@ package railgunDownloaderV4.components
 
 import railgunDownloaderV4.Application
 import railgunDownloaderV4.components.facebookUI.FacebookUI
-import railgunDownloaderV4.components.facebookUI.events.LoadUI
-import railgunDownloaderV4.components.ulti.SetIconButton
+import railgunDownloaderV4.components.global.ButtonUI
+import railgunDownloaderV4.components.global.events.LoadUI
+import java.awt.Dimension
+import java.awt.Point
 import javax.swing.JButton
 
 class Facebook (private val appScene: Application){
-    private val setIconButton: SetIconButton by lazy { SetIconButton() }
     private val facebookUI: FacebookUI by lazy { FacebookUI(appScene) }
+    private val buttonUI: ButtonUI by lazy { ButtonUI() }
     private val loadUI: LoadUI by lazy { LoadUI(appScene) }
 
     fun setFacebookButton(facebookButton: JButton) {
-        facebookButton.setSize(50, 50)
-        facebookButton.setLocation(135, 0)
-        facebookButton.isBorderPainted = false
-        facebookButton.isFocusPainted = false
-        facebookButton.isContentAreaFilled = false
-        facebookButton.border = null
-
-        setIconButton.setIcon(
-            facebookButton,"/Facebook.png", 50, 50
+        buttonUI.setButtonUI(
+            appScene.app, facebookButton,
+            Dimension(50, 50), Point(135, 0),
+            "/Facebook.png", "Download video from Facebook"
         )
 
        loadUI.setLoadUI(facebookButton, facebookUI::showFacebookUI)
