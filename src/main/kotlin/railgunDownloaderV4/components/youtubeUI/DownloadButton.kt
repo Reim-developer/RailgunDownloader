@@ -64,7 +64,7 @@ class DownloadButton(private val youtubeUIContext: YoutubeUI) {
             }
 
            downloadVideoProcess.setDownloadVideoProcess(
-               inputURLValue, savePathValue, youtubeUIContext.resultLog
+               inputURLValue, savePathValue, youtubeUIContext.resultLog, "best"
            )
         }
     }
