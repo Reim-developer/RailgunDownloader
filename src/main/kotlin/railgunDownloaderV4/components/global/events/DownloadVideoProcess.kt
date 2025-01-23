@@ -16,12 +16,15 @@ import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
 
 class DownloadVideoProcess {
-    fun setDownloadVideoProcess(videoURL: String, saveDir: String, logArea: JTextArea) {
+    fun setDownloadVideoProcess(videoURL: String, saveDir: String, logArea: JTextArea, quality: String) {
         val absolutePath = Path("bin/Helper.lib").absolutePathString()
         val processBuilder = ProcessBuilder(
             absolutePath,
             "-o",
-            "$saveDir/%(title)s.%(ext)s", videoURL
+            "$saveDir/%(title)s.%(ext)s",
+            "-f",
+            quality,
+            videoURL
         )
         val process = processBuilder.start()
         val reader = BufferedReader(InputStreamReader(process.inputStream))
