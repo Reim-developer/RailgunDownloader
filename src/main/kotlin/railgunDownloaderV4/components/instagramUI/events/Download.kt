@@ -45,7 +45,7 @@ class Download (
 
             downloadVideoProcess.setDownloadVideoProcess(
                 urlField.text, pathField.text,
-                logArea
+                logArea, "best"
             )
         }
     }
