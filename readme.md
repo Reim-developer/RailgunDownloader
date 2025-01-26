@@ -27,3 +27,5 @@
 | **MangaDex**  | **https://mangadex.org**       | Image          |
 |  **TikTok**   | **https://www.tiktok.com/**    | Video          |
 | **DevianArt** | **https://www.deviantart.com** | Image          |
+
+* **Video downloader is supported by [YT DLP](https://github.com/yt-dlp/yt-dlp)**
