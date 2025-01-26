@@ -24,6 +24,7 @@ class DownloadVideoProcess {
             "$saveDir/%(title)s.%(ext)s",
             "-f",
             quality,
+            "--yes-playlist",
             videoURL
         )
         val process = processBuilder.start()
