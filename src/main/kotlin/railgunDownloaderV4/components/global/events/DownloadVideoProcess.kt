@@ -8,6 +8,7 @@
 
 package railgunDownloaderV4.components.global.events
 
+import railgunDownloaderV4.components.ulti.CheckOS
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.swing.JTextArea
@@ -16,8 +17,14 @@ import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
 
 class DownloadVideoProcess {
+    private val checkOS: CheckOS by lazy { CheckOS() }
+
     fun setDownloadVideoProcess(videoURL: String, saveDir: String, logArea: JTextArea, quality: String) {
-        val absolutePath = Path("bin/Helper.lib").absolutePathString()
+        var absolutePath = "Unknown"
+        when(checkOS.sysType()) {
+            "Linux" -> absolutePath = Path("bin/Helper.lib").absolutePathString()
+            "Windows" -> absolutePath = Path("bin/Helper.exe").absolutePathString()
+        }
         val processBuilder = ProcessBuilder(
             absolutePath,
             "-o",
